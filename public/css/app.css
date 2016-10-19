@@ -1,0 +1,124 @@
+body{
+	font-family: 'Montserrat', sans-serif;
+}
+
+input.form-control:focus{
+	border-color: #C9B79C;
+}
+
+#breadcrumbs-container .breadcrumb{
+	background-color: white;
+	padding-left: 0;
+}
+
+#breadcrumbs-container .breadcrumb .breadcrumb-item{
+	color: #1c3643;
+}
+
+#breadcrumbs-container .breadcrumb .breadcrumb-item.active{
+	color: #95a5a6;
+}
+
+#breadcrumbs-container .breadcrumb .breadcrumb-item+.breadcrumb-item::before{
+	content: ">";
+}
+
+#filtros-container .list-group-item-action.active{
+	background-color: #C9B79C;
+	border-color: #C9B79C;
+}
+
+#footer-container{
+	background-color: #1c3643;
+	color: white;
+	padding: 3em 0;
+}
+
+#footer-container h4{
+	font-size: 16px;
+}
+
+#footer-container .nav-link{
+	color: white;
+}
+
+#header-container,
+#info-container{
+	background-color: #C9B79C;
+	color: black;
+}
+
+#header-container .login,
+#header-container .navbar-toggler{
+	color: black;
+}
+
+#info-container h4{
+	margin: 1em 0;
+}
+
+#info-container img{
+	margin: 0 auto;
+	margin-top: 1em;
+}
+
+#menu-container{
+	background-color: #f7f7f9;
+}
+
+#paginator-container .page-item:not(.active):not(.disabled) .page-link{
+	color: #C9B79C;
+}
+
+#paginator-container .page-item.active .page-link, .page-item.active .page-link:focus, .page-item.active .page-link:hover{
+	background-color: #C9B79C;
+	border-color: #C9B79C;
+	color: white;
+}
+
+#productos-container{
+	margin-bottom: 2em;
+}
+
+#productos-container .list-group+.list-group{
+	margin-top: 1em;
+}
+
+#productosCarousel img{
+	margin: 0 auto;
+}
+
+#search-bar{
+	padding: 1em;
+}
+
+.btn.btn-trikas{
+	background-color: #C9B79C;
+	color: black;
+}
+
+.btn.btn-trikas:hover{
+	background-color: #342a21;
+	color: white;
+}
+
+@media (max-width: 768px){
+	#footer-container [class*="col-"]{
+		margin-bottom: 2em;
+	}
+
+	#filtros-toggle{
+		margin-bottom: 1em;
+	}
+
+	.lista-productos{
+		margin-top: 2em;
+	}
+
+	.lista-productos .card-img-top{
+		width: 100%;
+	}
+}
+
+
+

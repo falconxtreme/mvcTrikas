@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat')
+    link(rel='stylesheet', href='/css/bootstrap-flex.min.css', type='text/css')
+    link(rel='stylesheet', href='/fontawesome/css/font-awesome.min.css', type='text/css')
+    link(rel='stylesheet', href='/css/app.css')
+  body
+    header(id='header-container')
+      div.container
+        div.row.flex-items-xs-middle.flex-items-xs-between
+          div.col-xs-3
+            h1 Trikas
+          div.col-xs-3.flex-xs-right
+            button(class='navbar-toggler pull-xs-right hidden-sm-up', data-toggle="collapse", data-target="#navMenu") &#9776;
+            a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#") Login
+
+    div(id='menu-container')
+      nav(id="navMenu", class="navbar-toggleable-xs navbar navbar-light collapse")
+      div.container
+        div.row
+          div.col-xs-10.offset-xs-1.col-md-4.offset-md-0
+            ul.nav.navbar-nav
+              li.nav-item.text-xs-center.active
+                a(class="nav-link", href="index.html") Home
+              li.nav-item.text-xs-center
+                a(class="nav-link", href="catalogo.html") Catálogo
+              li.nav-item.text-xs-center
+                a(class="nav-link", href="carrito.html") Carrito
+              li.nav-item.hidden-sm-up.text-xs-center
+                a(class="nav-link", href="#") Login
+          div.col-xs-12.col-md-6.offset-md-2.hidden-xs-down
+            form
+              div.input-group
+                input(class="form-control", type="text", placeholder="Encontró lo que buscaba?")
+                span.input-group-btn
+                  button.btn.btn-trikas
+                    span.hidden-sm-down Buscar
+                    i.fa.fa-search.hidden-md-up
+
+    block content
+
+    h2 hola cuerpo
