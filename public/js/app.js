@@ -46,3 +46,14 @@ $filtrosToggle.click(function(ev){
 		$i.removeClass("fa-chevron-up").addClass("fa-chevron-down");
 	}
 });
+
+const $navItems = $("#navMenu").find(".nav-item");
+$navItems.click(function(ev){
+	alert("ingresa a navitem");
+	$navItems.removeClass("active");
+	const $this = $(this);
+	const isActive = $this.hasClass("active");
+	if(!isActive){
+		$this.addClass("active");
+	}
+});
