@@ -102,13 +102,13 @@ input.form-control:focus{
 	color: white;
 }
 
-.nav.navbar-nav .nav-item a.nav-link{
+/*.nav.navbar-nav .nav-item a.nav-link{
 	color: rgba(0,0,0,.3);
 }
 
 .nav.navbar-nav .nav-item.active a.nav-link{
 	color: rgba(0,0,0,.8);
-}
+}*/
 
 @media (max-width: 768px){
 	#footer-container [class*="col-"]{
