@@ -25,9 +25,10 @@ $form.submit(function(ev){
 }); 
 
 function mostrarModal(){
-	if(!(JSON.parse(localStorage.noMostrarModal)))(
+	if(!(JSON.parse(localStorage.noMostrarModal))){
 		$("#modalOferta").modal();
-	)
+	}
+	
 
 	$("#btnNoRegistrar").click(function (ev){
 		localStorage.noMostrarModal = true;
@@ -47,13 +48,15 @@ $filtrosToggle.click(function(ev){
 	}
 });
 
+/*
 const $navItems = $("#navMenu").find(".nav-item");
 $navItems.click(function(ev){
-	alert("ingresa a navitem");
 	$navItems.removeClass("active");
 	const $this = $(this);
+	console.log($this);
 	const isActive = $this.hasClass("active");
 	if(!isActive){
 		$this.addClass("active");
 	}
-});
+	console.log($this);
+});*/
