@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET Catalogo Page */
+/*Get Car Page*/
 router.get('/', function(req, res, next){
-	res.render('catalogo/index', 
+	res.render('carrito/index', 
 		{ 
-			title: 'Catálogo Trikas' , 
+			title: 'Carrito Trikas' , 
 			"home": '', 
-			"catalogo": 'active', 
-			"carrito": '', 
+			"catalogo": '', 
+			"carrito": 'active', 
 			"login": ''
 		});
 });

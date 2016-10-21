@@ -17,7 +17,7 @@ html
             h1 Trikas
           div.col-xs-3.flex-xs-right
             button(class='navbar-toggler pull-xs-right hidden-sm-up', data-toggle="collapse", data-target="#navMenu") &#9776;
-            a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#") Login
+            a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="/login") Login
 
     div(id='menu-container')
       nav(id="navMenu", class="navbar-toggleable-xs navbar navbar-light collapse")
@@ -29,10 +29,10 @@ html
                   a(class="nav-link", href="/") Home
                 li(class='nav-item text-xs-center #{catalogo}')
                   a(class="nav-link", href="/catalogo") Catálogo
-                li.nav-item.text-xs-center
+                li(class='nav-item text-xs-center #{carrito}')
                   a(class="nav-link", href="/carrito") Carrito
-                li.nav-item.hidden-sm-up.text-xs-center
-                  a(class="nav-link", href="#") Login
+                li(class='nav-item hidden-sm-up text-xs-center #{login}')
+                  a(class="nav-link", href="/login") Login
             div.col-xs-12.col-md-6.offset-md-2.hidden-xs-down
               form
                 div.input-group

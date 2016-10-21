@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  section(id="carrito-container")
+    div.container
+      div.row
+        div.col-xs-12.col-md-9
+          div.list-group
+            div.list-group-item.list-group-item-action.active
+              h5.list-group-heading Productos
+            div.list-group-item.list-group-item-action
+              label producto 1
+        div.col-xs-12.col-md-3
+          div.list-group
+            div.list-group-item.list-group-item-action.list-group-item-success
+              h5.list-group-heading Total a Pagar
+            div.list-group-item.list-group-item-action
+              h2 S/. 100.00
+          div.text-center
+            a(href="/carrito/pagar" class="btn btn-danger") Pagar
+              i.fa.fa-shopping-cart
