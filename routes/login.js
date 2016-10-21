@@ -12,3 +12,5 @@ router.get('/', function(req, res, next){
 			"login":'active'
 		})
 });
+
+module.exports = router;
