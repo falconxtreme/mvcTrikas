@@ -9,7 +9,15 @@ block content
             div.list-group-item.list-group-item-action.active
               h5.list-group-heading Productos
             div.list-group-item.list-group-item-action
-              label producto 1
+              div.row.producto-carrito
+                div.col-xs-12.col-md-5
+                  label producto 1
+                div.col-xs-12.col-md-2
+                  label S/. 12.00
+                div.col-xs-12.col-md-2
+                  label 2
+                div.col-xs-12.col-md-2
+                  label S/. 24.00
         div.col-xs-12.col-md-3
           div.list-group
             div.list-group-item.list-group-item-action.list-group-item-success
@@ -17,5 +25,5 @@ block content
             div.list-group-item.list-group-item-action
               h2 S/. 100.00
           div.text-center
-            a(href="/carrito/pagar" class="btn btn-danger") Pagar
+            a(href="/carrito/pagar", class="btn btn-danger", id="aPagar") Realizar pedido
               i.fa.fa-shopping-cart

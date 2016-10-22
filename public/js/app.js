@@ -79,7 +79,7 @@ $(document).ready(function(){
 					.removeClass("btn-primary")
 					.addClass("btn-success")
     				.blur()
-					.delay(1600)
+					.delay(1200)
 					.fadeIn(function(){
 						title.text("Acceso autorizado");
 						button.attr("data-dismiss", "modal");

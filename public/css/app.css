@@ -128,5 +128,52 @@ input.form-control:focus{
 	}
 }
 
+/*-------LOGIN MODAL----------*/
+.modal-dialog {
+    width: 300px;
+}
+.modal-footer {
+    height: 70px;
+    margin: 0;
+}
+.modal-footer .btn {
+    font-weight: bold;
+}
+.input-group-addon {
+    color: #fff;
+    background: #3276B1;
+}
 
+#progLogin {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  display: none;
+}
 
+#barLogin {
+  position: absolute;
+  width: 1%;
+  height: 100%;
+  background-color: #4CAF50;
+}
+
+/*---------Carrito Page------*/
+#carrito-container {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#aPagar {
+	margin-top: 1em;
+}
+
+#carrito-container .list-group-item-action.active{
+	background-color: #C9B79C;
+	border-color: #C9B79C;
+}
+
+.producto-carrito{
+	border-bottom: 1px solid #C9B79C;
+}
