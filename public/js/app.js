@@ -48,18 +48,62 @@ $(document).ready(function(){
 			$i.removeClass("fa-chevron-up").addClass("fa-chevron-down");
 		}
 	});
+
+	/*------LOGIN MODAL--------*/
+	$('#btnLoginOk').click(function(){
+		var button = $(this);
+
+		if ( button.attr("data-dismiss") != "modal" ){
+			var inputs = $('form input');
+			var title = $('.modal-title');
+			var progress = $('#progLogin');
+
+
+			inputs.attr("disabled", "disabled");
+			button.hide();
+			progress.css("display", "block");
+			var elem = document.getElementById("barLogin");
+			var width = 1;
+			var id = setInterval(frame, 10);
+			function frame() {
+				if (width >= 100) {
+			    	clearInterval(id);
+			      	progress.css("display", "none");
+			    } else {
+			      	width++;
+			      	elem.style.width = width + '%';
+			    }
+		  	}
+
+			button.text("Close")
+					.removeClass("btn-primary")
+					.addClass("btn-success")
+    				.blur()
+					.delay(1600)
+					.fadeIn(function(){
+						title.text("Acceso autorizado");
+						button.attr("data-dismiss", "modal");
+					});
+		}
+	});
+
+	$('#loginMod').on('hidden.bs.modal', function (e) {
+		var inputs = $('form input');
+		var title = $('.modal-title');
+		var progressBar = $('.progress-bar');
+		var button = $('.modal-footer button');
+
+		inputs.removeAttr("disabled");
+
+		title.text("Acceso");
+
+		progressBar.css({ "width" : "0%" });
+
+		button.removeClass("btn-success")
+				.addClass("btn-primary")
+				.text("Ok")
+				.removeAttr("data-dismiss");
+                
+	});
 });
 
-
-/*
-const $navItems = $("#navMenu").find(".nav-item");
-$navItems.click(function(ev){
-	$navItems.removeClass("active");
-	const $this = $(this);
-	console.log($this);
-	const isActive = $this.hasClass("active");
-	if(!isActive){
-		$this.addClass("active");
-	}
-	console.log($this);
-});*/
