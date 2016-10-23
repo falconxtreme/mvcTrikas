@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var daProducto = require('../datos/producto'), //mongo connection
+var daCategoria = require('../datos/categoria'), //mongo connection
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
@@ -14,24 +14,24 @@ router.use(methodOverride(function(req, res){
         delete req.body._method
         return method
       }
-}))
+}));
 
-/* GET Catalogo Page */
+/* GET Categoria Page */
 router.get('/', function(req, res, next){
-	res.render('catalogo/index', 
+	res.render('categoria/index', 
 		{ 
-			title: 'Catálogo Trikas' , 
+			title: 'Categoría Trikas' , 
 			"home": '', 
 			"catalogo": 'active', 
 			"carrito": '', 
 			"login": '',
-			"productos": daProducto.getProductos()
+			"categorias": daCategoria.getCategorias()
 		});
 });
 
-/* GET Nuevo Producto page. */
+/* GET Nuevo Categoria page. */
 router.get('/nuevo', function(req, res) {
-    res.render('producto/nuevo', { title: 'Nuevo Producto' });
+    res.render('categoria/nuevo', { title: 'Nueva Categoria' });
 });
 
 module.exports = router;

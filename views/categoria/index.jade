@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+	h1.
+		#{title}
+	form#formAddCategory(name="addcategory",method="post",action="/categoria")
+		p Id Categoria: 
+			input#txtIdCategoria(type="text", placeholder="ex. CAT0001", name="idCategoria")
+		p Descripción:
+			input#txtDesCategoria(type="text", placeholder="ex. Sopa", name="desCategoria")
+		p Activo?: 
+			input#chkActivo(type="checkbox", name="esActivo")
+		p
+			button#btnSubmit(type="submit") submit

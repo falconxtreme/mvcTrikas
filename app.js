@@ -9,6 +9,7 @@ var db = require('./model/db');
 
 var routes = require('./routes/index'),
     catalogo = require('./routes/catalogo'),
+    categoria = require('./routes/categoria'),
     carrito = require('./routes/carrito'),
     login = require('./routes/login');
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/catalogo', catalogo);
+app.use('/categoria', categoria);
 app.use('/carrito', carrito);
 app.use('/login', login);
 
