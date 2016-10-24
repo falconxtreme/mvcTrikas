@@ -5,7 +5,8 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
 
-var db = require('./model/db');
+//var db = require('./model/db');
+require('./model/db');
 
 var routes = require('./routes/index'),
     catalogo = require('./routes/catalogo'),

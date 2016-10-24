@@ -11,9 +11,9 @@ var productoSchema = new mongoose.Schema({
 	urlImagen: String,
 	fecCreacion: { type: Date, default: Date.now },
 	fecModificacion: { type: Date, default: Date.now },
-	categoria: {type: Schema.ObjectId, ref: "Categoria"},
-	usuario: {type: Schema.ObjectId, ref: "Usuario"},
-	usuarioMod: {type: Schema.ObjectId, ref: "Usuario"},
+	categoria: {type: mongoose.Schema.ObjectId, ref: "Categoria"},
+	usuario: {type: mongoose.Schema.ObjectId, ref: "Usuario"},
+	usuarioMod: {type: mongoose.Schema.ObjectId, ref: "Usuario"},
 	esActivo: Boolean
 });
 

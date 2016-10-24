@@ -6,7 +6,7 @@ var categoriaSchema = new mongoose.Schema({
 	desCategoria: String,
 	fecCreacion: { type: Date, default: Date.now },
 	fecModificacion: { type: Date, default: Date.now },
-	usuario: {type: Schema.ObjectId, ref: "Usuario"},
+	usuario: {type: mongoose.Schema.ObjectId, ref: "Usuario"},
 	esActivo: Boolean
 });
 

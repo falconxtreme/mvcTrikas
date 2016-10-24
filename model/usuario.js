@@ -11,7 +11,7 @@ var usuarioSchema = new mongoose.Schema({
 	fechaNacimiento: { type: Date, default: Date.now },
 	fecCreacion: { type: Date, default: Date.now },
 	fecModificacion: { type: Date, default: Date.now },
-	rol: {type: Schema.ObjectId, ref: "Rol"}
+	rol: {type: mongoose.Schema.ObjectId, ref: "Rol"}
 });
 
 module.exports = mongoose.model('Usuario', usuarioSchema);
