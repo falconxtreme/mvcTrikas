@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var rolSchema = new mongoose.Schema({
 	idRol: String,
 	desRol: String,
-	fecCreacion: { type: Date, default: Date.now },
-	fecModificacion: { type: Date, default: Date.now },
+	fecCreacion: { type: Date, default: Date.now() },
+	fecModificacion: { type: Date, default: Date.now() },
 	esActivo: Boolean
 });
 
