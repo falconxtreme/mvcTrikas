@@ -8,7 +8,7 @@ var usuarioSchema = new mongoose.Schema({
 	token: String,
 	nombre: String,
 	dni: String,
-	fechaNacimiento: { type: Date, default: Date.now },
+	fecNacimiento: { type: Date, default: Date.now },
 	fecCreacion: { type: Date, default: Date.now },
 	fecModificacion: { type: Date, default: Date.now },
 	rol: {type: mongoose.Schema.ObjectId, ref: "Rol"}
