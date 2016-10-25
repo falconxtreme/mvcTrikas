@@ -36,4 +36,25 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
     })
 }
 
+daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
+	usuarioModel.find({
+		correo:usuarioIn.correo,
+		contrasenha : usuarioIn.contrasenha
+	}, function (err, usuarios) {
+		if (err) {
+			console.error(err);
+			fnIn(err);
+		} else {
+			if(usuarios){
+				if (usuarios.length==1){
+					fnIn("");
+				}else{
+					
+				}
+			}
+			return usuarios;
+		}
+	});
+}
+
 module.exports = daCategoria;

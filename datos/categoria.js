@@ -15,7 +15,7 @@ daCategoria.getCategorias = function (){
 	});
 }
 
-daCategoria.addCategoria = function(categoriaIn){
+daCategoria.addCategoria = function(categoriaIn, fnIn){
 	categoriaModel.create({
 	    idCategoria : categoriaIn.idCategoria,
 	    desCategoria : categoriaIn.desCategoria,
@@ -25,10 +25,10 @@ daCategoria.addCategoria = function(categoriaIn){
 	    esActivo: categoriaIn.esActivo
     }, function (err, categoria) {
 		if (err) {
-		  return ("Hubo un problema agregando la información a la base de datos.");
+		  fnIn("Hubo un problema agregando la información a la base de datos.");
 		} else {
 		  //Categoria has been created
-		  return ("La categoría ha sido creada correctamente.");
+		  fnIn("La categoría ha sido creada correctamente.");
 		}
     })
 }

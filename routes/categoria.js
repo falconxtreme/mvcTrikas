@@ -37,11 +37,9 @@ router.post(function(req, res) {
         oCategoria.desCategoria = req.body.desCategoria;
         oCategoria.fecCreacion = Date.now;
         oCategoria.fecModificacion = Date.now;
-        oCategoria.esActivo = req.body.esActivo;
-    var name = req.body.name;
-    var badge = req.body.badge;
-    var dob = req.body.dob;
-    var company = req.body.company;
+        oCategoria.usuario = "";
+        oCategoria.esActivo = (req.body.esActivo)? req.body.esActivo : false;
+    
     var isloved = req.body.isloved;
     //call the create function for our database
     mongoose.model('Blob').create({

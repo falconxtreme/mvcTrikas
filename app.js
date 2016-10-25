@@ -13,7 +13,7 @@ var routes = require('./routes/index'),
     rol = require('./routes/rol'),
     categoria = require('./routes/categoria'),
     carrito = require('./routes/carrito'),
-    login = require('./routes/login');
+    usuario = require('./routes/usuario');
 
 //var users = require('./routes/users');
 
@@ -36,7 +36,7 @@ app.use('/catalogo', catalogo);
 app.use('/rol', rol);
 app.use('/categoria', categoria);
 app.use('/carrito', carrito);
-app.use('/login', login);
+app.use('/usuario', usuario);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

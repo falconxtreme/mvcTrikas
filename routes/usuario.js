@@ -18,50 +18,52 @@ router.use(methodOverride(function(req, res){
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('usuario/index', 
+		{ 
+			title: 'Usuarios Trikas' , 
+			"home": '', 
+			"catalogo": '', 
+			"carrito": '', 
+			"login": '',
+			"usuarios": daUsuario.getUsuarios()
+		});
 });
 
-//POST a new Categoria
-router.post(function(req, res) {
+//POST a new User
+router.post('/', function(req, res, next) {
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
-    var oCategoria = {};
-        oCategoria.idCategoria = req.body.idCategoria;
-        oCategoria.desCategoria = req.body.desCategoria;
-        oCategoria.fecCreacion = Date.now;
-        oCategoria.fecModificacion = Date.now;
-        oCategoria.esActivo = req.body.esActivo;
-    var name = req.body.name;
-    var badge = req.body.badge;
-    var dob = req.body.dob;
-    var company = req.body.company;
-    var isloved = req.body.isloved;
+    var oUsuario = {};
+        oUsuario.correo = req.body.correo;
+        oUsuario.contrasenha = req.body.contrasenha;
+        oUsuario.nick = "";
+        oUsuario.token = "";
+        oUsuario.nombre = "";
+        oUsuario.dni = "";
+        oUsuario.fecNacimiento = Date.now();
+        oUsuario.fecCreacion = Date.now();
+        oUsuario.fecModificacion = Date.now();
+        oUsuario.rol = "";
+    
     //call the create function for our database
-    mongoose.model('Blob').create({
-        name : name,
-        badge : badge,
-        dob : dob,
-        isloved : isloved
-    }, function (err, blob) {
-          if (err) {
-              res.send("There was a problem adding the information to the database.");
-          } else {
-              //Blob has been created
-              console.log('POST creating new blob: ' + blob);
-              res.format({
-                  //HTML response will set the location and redirect back to the home page. You could also create a 'success' page if that's your thing
-                html: function(){
-                    // If it worked, set the header so the address bar doesn't still say /adduser
-                    res.location("blobs");
-                    // And forward to success page
-                    res.redirect("/blobs");
-                },
-                //JSON response will show the newly created blob
-                json: function(){
-                    res.json(blob);
-                }
-            });
-          }
-    })
+    console.log('POST creating new USUARIO: ' + oUsuario);
+    daUsuario.addUsuario(oUsuario, function(rptaBD){
+    	res.json(rptaBD);
+    });
+});
+
+//POST a validacion de cuenta
+router.post('/autenticacion', function(req, res, next) {
+    // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
+    var oUsuario = {};
+        oUsuario.correo = req.body.correo;
+        oUsuario.contrasenha = req.body.contrasenha;
+        oUsuario.token = req.body.token;
+    
+    //call the create function for our database
+    console.log('POST creating new USUARIO: ' + oUsuario);
+    daUsuario.addUsuario(oUsuario, function(rptaBD){
+    	res.json(rptaBD);
+    });
 });
 
 module.exports = router;
