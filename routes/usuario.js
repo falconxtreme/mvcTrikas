@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var daUsuario = require('../datos/usuario'), //mongo connection
+    daRol = require('../datos/rol'),
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
@@ -44,15 +45,23 @@ router.post('/', function(req, res, next) {
         oUsuario.fecModificacion = Date.now();
         oUsuario.rol = "";
     
-    //call the create function for our database
-    console.log('POST creating new USUARIO: ' + oUsuario);
-    daUsuario.addUsuario(oUsuario, function(rptaBD){
-    	res.json(rptaBD);
+    daRol.getRolCliente(function(err, idRol){
+        //call the create function for our database
+        console.log("idrol: " + idRol);
+        if(err){
+            res.json(err);
+        }else{
+            oUsuario.rol= idRol;
+            console.log('POST creating new USUARIO: ' + oUsuario);
+            daUsuario.addUsuario(oUsuario, function(rptaBD){
+                res.json(rptaBD);
+            });    
+        }
     });
 });
 
 //POST a validacion de cuenta
-router.post('/autenticacion', function(req, res, next) {
+router.get('/autenticacion', function(req, res, next) {
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
     var oUsuario = {};
         oUsuario.correo = req.body.correo;
@@ -61,7 +70,7 @@ router.post('/autenticacion', function(req, res, next) {
     
     //call the create function for our database
     console.log('POST creating new USUARIO: ' + oUsuario);
-    daUsuario.addUsuario(oUsuario, function(rptaBD){
+    daUsuario.autenticarCorreo(oUsuario, function(rptaBD){
     	res.json(rptaBD);
     });
 });

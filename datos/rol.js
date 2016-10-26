@@ -15,6 +15,23 @@ daRol.getRoles = function (){
 	});
 }
 
+daRol.getRolCliente = function (fnIn){
+	var rolCliente = "Cliente";
+	rolModel.find({
+		desRol: rolCliente
+	}, function (err, roles) {
+		if (err) {
+			console.error(err);
+			fnIn(err, null);
+		} else {
+			return roles;
+			if(roles){
+				fnIn(null, roles[0]._id);
+			}
+		}
+	});
+}
+
 daRol.addRol = function(rolIn, fnIn){
 	rolModel.create({
 	    idRol : rolIn.idRol,

@@ -75,6 +75,8 @@ $(document).ready(function(){
 			    }
 		  	}
 
+		  	autenticar();
+
 			button.text("Close")
 					.removeClass("btn-primary")
 					.addClass("btn-success")
@@ -105,5 +107,37 @@ $(document).ready(function(){
 				.removeAttr("data-dismiss");
                 
 	});
+
+	function autenticar(){
+		var correo = "";
+		var password = "";
+		var token = "";
+
+		var dataIn = {
+			correo: correo,
+			contrasenha: password,
+			token: token
+		};
+
+		$.ajax({
+			type: 'GET',
+			url: 'http://localhost:3000/usuario/autenticacion',
+			data: dataIn,
+			async: false,
+			beforeSend: function(xhr){
+				if(xhr && xhr.overrideMimeType){
+					xhr.overrideMimeType('application/json;charset=utf-8');
+				}
+			},
+			dataType: 'json',
+			success: function(data){
+				console.log(data);				
+			}
+		});
+	};
+
+	function registrar(){
+
+	};
 });
 

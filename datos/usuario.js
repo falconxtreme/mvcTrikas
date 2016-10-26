@@ -38,7 +38,7 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 
 daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 	usuarioModel.find({
-		correo:usuarioIn.correo,
+		correo: usuarioIn.correo,
 		contrasenha : usuarioIn.contrasenha
 	}, function (err, usuarios) {
 		if (err) {
@@ -48,11 +48,12 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 			if(usuarios){
 				if (usuarios.length==1){
 					fnIn("");
-				}else{
-					
+				} else{
+					fnIn("Existe más de una coincidencia con la información ingresada.")
 				}
+			} else{
+				fnIn("Datos Incorrectos, por favor vuelva a intentarlo.")
 			}
-			return usuarios;
 		}
 	});
 }

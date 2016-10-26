@@ -38,7 +38,7 @@ router.get('/', function(req, res, next){
   });
 });
 
-//POST a new Categoria
+//POST a new Rol
 router.post('/', function(req, res) {
   // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
   var oRol = {};
