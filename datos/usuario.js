@@ -58,4 +58,4 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 	});
 }
 
-module.exports = daCategoria;
+module.exports = daUsuario;
