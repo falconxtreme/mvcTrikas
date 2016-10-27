@@ -207,7 +207,7 @@ $(document).ready(function(){
 			return "Ningún campo puede estar vacío."
 		}else if(!patMail.test(correo)){
 			return "Ingresar un correo válido."
-		}else if(password.indexOf(" ") || repassword.indexOf(" ")){
+		}else if(password.indexOf(" ")>=0 || repassword.indexOf(" ")>=0){
 			return "La contraseña no puede contener espacios."
 		}else if(password!=repassword){
 			return "La contraseña y la contraseña confirmada deben ser iguales."
@@ -216,8 +216,9 @@ $(document).ready(function(){
 	}
 
 	function registrarUsuario(idInterval, progress, button, title){
-		var correo = $("#uLoginReg").val();
-		var password = $("#uPasswordReg").val();
+		console.log("ingresa a registrarUsuario----");
+		var correo = $("#uLoginReg").val().trim();
+		var password = $("#uPasswordReg").val().trim();
 		var token = "";
 
 		var dataIn = {
@@ -264,6 +265,7 @@ $(document).ready(function(){
 				console.log(data);				
 			}
 		});
+		console.log("termina a registrarUsuario----");
 	};
 });
 

@@ -33,6 +33,7 @@ router.get('/', function(req, res, next) {
 //POST a new User
 router.post('/', function(req, res, next) {
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
+    console.log("ingresa a router post---------- ");
     var oUsuario = {};
         oUsuario.correo = req.body.correo;
         oUsuario.contrasenha = req.body.contrasenha;
