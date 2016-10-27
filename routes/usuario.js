@@ -69,7 +69,8 @@ router.get('/autenticacion', function(req, res, next) {
         oUsuario.token = req.body.token;
     
     //call the create function for our database
-    console.log('POST creating new USUARIO: ' + oUsuario);
+    console.log("autenticacion usuario: " + oUsuario.correo);
+    console.log("autenticacion contrasenha: " + oUsuario.contrasenha);
     daUsuario.autenticarCorreo(oUsuario, function(rptaBD){
     	res.json(rptaBD);
     });

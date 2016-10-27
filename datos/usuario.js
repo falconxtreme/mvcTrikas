@@ -15,25 +15,61 @@ daUsuario.getUsuarios = function (){
 }
 
 daUsuario.addUsuario = function(usuarioIn, fnIn){
-	usuarioModel.create({
-	    correo : usuarioIn.correo,
-	    contrasenha : usuarioIn.contrasenha,
-	    nick : usuarioIn.nick,
-	    token : usuarioIn.token,
-	    nombre : usuarioIn.nombre,
-	    dni: usuarioIn.dni,
-	    fecNacimiento: usuarioIn.fecNacimiento,
-	    fecCreacion: usuarioIn.fecCreacion,
-	    fecModificacion: usuarioIn.fecModificacion,
-	    rol: usuarioIn.rol
-    }, function (err, usuario) {
+	usuarioModel.find({
+		correo: usuarioIn.correo
+	}, function (err, usuarios) {
 		if (err) {
-		  fnIn("Hubo un problema agregando la información a la base de datos.");
+			console.error(err);
+			fnIn(err);
 		} else {
-		  //Categoria has been created
-		  fnIn("El usuario ha sido creado correctamente.");
+			if(usuarios){
+				if(usuarios.length>0){
+					fnIn("Ya existe una cuenta creada con el mismo correo.")
+				}else{
+					usuarioModel.create({
+					    correo : usuarioIn.correo,
+					    contrasenha : usuarioIn.contrasenha,
+					    nick : usuarioIn.nick,
+					    token : usuarioIn.token,
+					    nombre : usuarioIn.nombre,
+					    dni: usuarioIn.dni,
+					    fecNacimiento: usuarioIn.fecNacimiento,
+					    fecCreacion: usuarioIn.fecCreacion,
+					    fecModificacion: usuarioIn.fecModificacion,
+					    rol: usuarioIn.rol
+				    }, function (err, usuario) {
+						if (err) {
+						  fnIn("Hubo un problema agregando la información a la base de datos.");
+						} else {
+						  //Categoria has been created
+						  fnIn(usuario);
+						}
+				    })
+				}
+			} else{
+				usuarioModel.create({
+				    correo : usuarioIn.correo,
+				    contrasenha : usuarioIn.contrasenha,
+				    nick : usuarioIn.nick,
+				    token : usuarioIn.token,
+				    nombre : usuarioIn.nombre,
+				    dni: usuarioIn.dni,
+				    fecNacimiento: usuarioIn.fecNacimiento,
+				    fecCreacion: usuarioIn.fecCreacion,
+				    fecModificacion: usuarioIn.fecModificacion,
+				    rol: usuarioIn.rol
+			    }, function (err, usuario) {
+					if (err) {
+					  fnIn("Hubo un problema agregando la información a la base de datos.");
+					} else {
+					  //Categoria has been created
+					  fnIn(usuario);
+					}
+			    })
+			}
 		}
-    })
+	}
+	
 }
 
 daUsuario.autenticarCorreo = function(usuarioIn, fnIn){

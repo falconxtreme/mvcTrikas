@@ -93,7 +93,7 @@ html
             div(class="tab-pane active", id="tabAcceso", role="tabpanel")
               div.modal-header
                 button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
-                h4(class="modal-title", id="myLoginLabel") Acceso
+                h4(class="modal-title", id="lblTituloAcceso") Acceso
               div.modal-body
                 form(role="form")
                   div.form-group
@@ -110,33 +110,33 @@ html
                     input(type="checkbox", id='chkRecordarme', onchange="recordarUsuario()")
                     label &nbsp;Recordarme
               div.modal-footer
-                button(class="form-control btn btn-primary", id="btnLoginOk") Ok
+                button(class="form-control btn btn-primary", id="btnLoginOk") Acceder
                 div(id="progLogin")
                   div(id="barLogin")
             
             div(class="tab-pane", id="tabRegistro", role="tabpanel")
               div.modal-header
                 button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
-                h4(class="modal-title", id="myLoginLabel") Registro
+                h4(class="modal-title", id="lblTituloRegistro") Registro
               div.modal-body
                 form(role="form")
                   div.form-group
                     div.input-group
-                      input(type="text", class="form-control", id="uLoginReg", placeholder="Correo")
+                      input(type="text", class="form-control", id="uLoginReg", placeholder="Correo", required)
                       label(for="uLoginReg", class="input-group-addon")
                         i(class="fa fa-user", aria-hidden="true")
                   div.form-group
                     div.input-group
-                      input(type="password", class="form-control", id="uPasswordReg", placeholder="Password")
+                      input(type="password", class="form-control", id="uPasswordReg", placeholder="Password", required)
                       label(for="uPasswordReg", class="input-group-addon")
                         i(class="fa fa-lock", aria-hidden="true")
                   div.form-group
                     div.input-group
-                      input(type="password", class="form-control", id="uRePasswordReg", placeholder="Confirmar Password")
+                      input(type="password", class="form-control", id="uRePasswordReg", placeholder="Confirmar Password", required)
                       label(for="uRePasswordReg", class="input-group-addon")
                         i(class="fa fa-lock", aria-hidden="true")
               div.modal-footer
-                button(class="form-control btn btn-primary", id="btnLoginRegOk") Ok
+                button(class="form-control btn btn-primary", id="btnLoginRegOk") Registrar
                 div(id="progLoginReg")
                   div(id="barLoginReg")
 

@@ -55,7 +55,7 @@ $(document).ready(function(){
 
 		if ( button.attr("data-dismiss") != "modal" ){
 			var inputs = $('form input');
-			var title = $('.modal-title');
+			var title = $('#lblTituloAcceso');
 			var progress = $('#progLogin');
 
 
@@ -74,30 +74,72 @@ $(document).ready(function(){
 			      	elem.style.width = width + '%';
 			    }
 		  	}
-		  	autenticar(id, progress, button, title);
+		  	autenticarUsuario(id, progress, button, title);
 		}
+	});
+
+	$('#btnLoginRegOk').click(function(){
+		var msjValReg = validarCamposRegistro();
+		if(msjValReg==""){
+			var button = $(this);
+
+			if ( button.attr("data-dismiss") != "modal" ){
+				var inputs = $('form input');
+				var title = $('#lblTituloRegistro');
+				var progress = $('#progLoginReg');
+
+
+				inputs.attr("disabled", "disabled");
+				button.hide();
+				progress.css("display", "block");
+				var elem = document.getElementById("barLoginReg");
+				var width = 1;
+				var id = setInterval(frame, 10);
+				function frame() {
+					if (width >= 100) {
+				    	clearInterval(id);
+				      	progress.css("display", "none");
+				    } else {
+				      	width++;
+				      	elem.style.width = width + '%';
+				    }
+			  	}
+			  	registrarUsuario(id, progress, button, title);
+			}
+		}else{
+			var title = $('#lblTituloRegistro');
+			title.text(msjValReg);
+		}
+		
 	});
 
 	$('#loginMod').on('hidden.bs.modal', function (e) {
 		var inputs = $('form input');
-		var title = $('.modal-title');
+		var titleAc = $('#lblTituloAcceso');
+		var titleRe = $('#lblTituloRegistro');
 		var progressBar = $('.progress-bar');
-		var button = $('.modal-footer button');
+		var button = $('#btnLoginOk');
+		var buttonRe = $('#btnLoginRegOk');
 
 		inputs.removeAttr("disabled");
 
-		title.text("Acceso");
+		titleAc.text("Acceso");
+		titleRe.text("Registro");
 
 		progressBar.css({ "width" : "0%" });
 
 		button.removeClass("btn-success")
 				.addClass("btn-primary")
-				.text("Ok")
+				.text("Acceder")
+				.removeAttr("data-dismiss");
+		buttonRe.removeClass("btn-success")
+				.addClass("btn-primary")
+				.text("Registrar")
 				.removeAttr("data-dismiss");
                 
 	});
 
-	function autenticar(idInterval, progress, button, title){
+	function autenticarUsuario(idInterval, progress, button, title){
 		var correo = $("#uLogin").val();
 		var password = $("#uPassword").val();
 		var token = "";
@@ -148,8 +190,80 @@ $(document).ready(function(){
 		});
 	};
 
-	function registrar(){
+	function patronMail(){
+		return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+	}
 
+	function patronPassword(){
+		return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/
+	}
+	function validarCamposRegistro(){
+		var correo = $("#uLoginReg").val().trim();
+		var password = $("#uPasswordReg").val().trim();
+		var repassword = $("#uRePasswordReg").val().trim();
+		var patMail = patronMail();
+
+		if(correo=="" || password=="" || repassword==""){
+			return "Ningún campo puede estar vacío."
+		}else if(!patMail.test(correo)){
+			return "Ingresar un correo válido."
+		}else if(password.indexOf(" ") || repassword.indexOf(" ")){
+			return "La contraseña no puede contener espacios."
+		}else if(password!=repassword){
+			return "La contraseña y la contraseña confirmada deben ser iguales."
+		}
+		return "";
+	}
+
+	function registrarUsuario(idInterval, progress, button, title){
+		var correo = $("#uLoginReg").val();
+		var password = $("#uPasswordReg").val();
+		var token = "";
+
+		var dataIn = {
+			correo: correo,
+			contrasenha: password,
+			token: token
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://localhost:3000/usuario',
+			data: dataIn,
+			async: false,
+			beforeSend: function(xhr){
+				if(xhr && xhr.overrideMimeType){
+					xhr.overrideMimeType('application/json;charset=utf-8');
+				}
+			},
+			dataType: 'json',
+			success: function(data){
+				clearInterval(idInterval);
+			    progress.css("display", "none");
+				if(data){
+					if(typeof (data) == 'string'){
+						title.text("Registro inválido! " + data);
+						localStorage.usuarioAutenticadoTrikas = false;
+						button.show();
+					}else{
+						localStorage.usuarioTrikas = correo;
+						localStorage.usuarioAutenticadoTrikas = true;
+						button.text("Close")
+							.removeClass("btn-primary")
+							.addClass("btn-success")
+		    				.blur()
+							.fadeIn(function(){
+								title.text("Registro válido");
+								button.attr("data-dismiss", "modal");
+							});
+					}
+				}else{
+					title.text("Registro inválido!");
+					button.show();
+				}
+				console.log(data);				
+			}
+		});
 	};
 });
 
