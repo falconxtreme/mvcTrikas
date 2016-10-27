@@ -74,18 +74,7 @@ $(document).ready(function(){
 			      	elem.style.width = width + '%';
 			    }
 		  	}
-
-		  	autenticar();
-
-			button.text("Close")
-					.removeClass("btn-primary")
-					.addClass("btn-success")
-    				.blur()
-					.delay(1200)
-					.fadeIn(function(){
-						title.text("Acceso autorizado");
-						button.attr("data-dismiss", "modal");
-					});
+		  	autenticar(id, progress, button, title);
 		}
 	});
 
@@ -108,9 +97,9 @@ $(document).ready(function(){
                 
 	});
 
-	function autenticar(){
-		var correo = "";
-		var password = "";
+	function autenticar(idInterval, progress, button, title){
+		var correo = $("#uLogin").val();
+		var password = $("#uPassword").val();
 		var token = "";
 
 		var dataIn = {
@@ -131,6 +120,29 @@ $(document).ready(function(){
 			},
 			dataType: 'json',
 			success: function(data){
+				clearInterval(idInterval);
+			    progress.css("display", "none");
+				if(data){
+					if(typeof (data) == 'string'){
+						title.text("Acceso denegado!");
+						localStorage.usuarioAutenticadoTrikas = false;
+						button.show();
+					}else{
+						localStorage.usuarioTrikas = correo;
+						localStorage.usuarioAutenticadoTrikas = true;
+						button.text("Close")
+							.removeClass("btn-primary")
+							.addClass("btn-success")
+		    				.blur()
+							.fadeIn(function(){
+								title.text("Acceso autorizado");
+								button.attr("data-dismiss", "modal");
+							});
+					}
+				}else{
+					title.text("Acceso denegado");
+					button.show();
+				}
 				console.log(data);				
 			}
 		});
@@ -141,3 +153,12 @@ $(document).ready(function(){
 	};
 });
 
+/*button.text("Close")
+					.removeClass("btn-primary")
+					.addClass("btn-success")
+    				.blur()
+					.delay(1200)
+					.fadeIn(function(){
+						title.text("Acceso autorizado");
+						button.attr("data-dismiss", "modal");
+					});*/

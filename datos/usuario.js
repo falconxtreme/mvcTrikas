@@ -47,7 +47,7 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 		} else {
 			if(usuarios){
 				if (usuarios.length==1){
-					fnIn("");
+					fnIn(usuarios[0]);
 				} else if(usuarios.length>0){
 					fnIn("Existe más de una coincidencia con la información ingresada.")
 				}else{
