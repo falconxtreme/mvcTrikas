@@ -44,7 +44,7 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 						  //Categoria has been created
 						  fnIn(usuario);
 						}
-				    })
+				    });
 				}
 			} else{
 				usuarioModel.create({
@@ -65,11 +65,10 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 					  //Categoria has been created
 					  fnIn(usuario);
 					}
-			    })
+			    });
 			}
 		}
-	}
-	
+	});
 }
 
 daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
