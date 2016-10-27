@@ -83,31 +83,62 @@ html
     div(class="modal fade", id="loginMod", tabindex="-1", role="dialog" aria-labelledby="Login", aria-hidden="true")
       div.modal-dialog
         div.modal-content
-          div.modal-header
-            button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
-            h4(class="modal-title", id="myLoginLabel") Acceso
-          div.modal-body
-            form(role="form")
-              div.form-group
-                div.input-group
-                  input(type="text", class="form-control", id="uLogin", placeholder="Login")
-                  label(for="uLogin", class="input-group-addon")
-                    i(class="fa fa-user", aria-hidden="true")
-              div.form-group
-                div.input-group
-                  input(type="password", class="form-control", id="uPassword", placeholder="Password")
-                  label(for="uPassword", class="input-group-addon")
-                    i(class="fa fa-lock", aria-hidden="true")
-              div.checkbox
-                input(type="checkbox", id='chkRecordarme', onchange="recordarUsuario()")
-                label &nbsp;Recordarme
-                  
+          ul(class="nav nav-tabs", role="tablist")
+            li.nav-item
+              a(class="nav-link active", data-toggle="tab", href="#tabAcceso", role="tab") Acceso
+            li.nav-item
+              a(class="nav-link", data-toggle="tab", href="#tabRegistro", role="tab") Registro
 
-          div.modal-footer
-            button(class="form-control btn btn-primary", id="btnLoginOk") Ok
-            div(id="progLogin")
-              div(id="barLogin")
-
+          div.tab-content
+            div(class="tab-pane active", id="tabAcceso", role="tabpanel")
+              div.modal-header
+                button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
+                h4(class="modal-title", id="myLoginLabel") Acceso
+              div.modal-body
+                form(role="form")
+                  div.form-group
+                    div.input-group
+                      input(type="text", class="form-control", id="uLogin", placeholder="correo")
+                      label(for="uLogin", class="input-group-addon")
+                        i(class="fa fa-user", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uPassword", placeholder="Password")
+                      label(for="uPassword", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+                  div.checkbox
+                    input(type="checkbox", id='chkRecordarme', onchange="recordarUsuario()")
+                    label &nbsp;Recordarme
+              div.modal-footer
+                button(class="form-control btn btn-primary", id="btnLoginOk") Ok
+                div(id="progLogin")
+                  div(id="barLogin")
+            
+            div(class="tab-pane", id="tabRegistro", role="tabpanel")
+              div.modal-header
+                button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
+                h4(class="modal-title", id="myLoginLabel") Registro
+              div.modal-body
+                form(role="form")
+                  div.form-group
+                    div.input-group
+                      input(type="text", class="form-control", id="uLoginReg", placeholder="Correo")
+                      label(for="uLoginReg", class="input-group-addon")
+                        i(class="fa fa-user", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uPasswordReg", placeholder="Password")
+                      label(for="uPasswordReg", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uRePasswordReg", placeholder="Confirmar Password")
+                      label(for="uRePasswordReg", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+              div.modal-footer
+                button(class="form-control btn btn-primary", id="btnLoginRegOk") Ok
+                div(id="progLoginReg")
+                  div(id="barLoginReg")
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js", integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY", crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js", integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB", crossorigin="anonymous")
