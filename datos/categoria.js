@@ -28,7 +28,7 @@ daCategoria.addCategoria = function(categoriaIn, fnIn){
 		  fnIn("Hubo un problema agregando la información a la base de datos.");
 		} else {
 		  //Categoria has been created
-		  fnIn("La categoría ha sido creada correctamente.");
+		  fnIn(categoria);
 		}
     })
 }

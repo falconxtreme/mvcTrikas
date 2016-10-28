@@ -83,4 +83,25 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 	});
 }
 
+daUsuario.getIdUsuario = function (correo, fnIn){
+	console.log("ingresa a getIdUsuario-----");
+	usuarioModel.find({
+		correo: correo
+	}, function (err, usuarios) {
+		if (err) {
+			console.log("error getIdUsuario-----");
+			console.error(err);
+			fnIn(err, null);
+		} else {
+			console.log("devuelve getIdUsuario-----");
+			if(usuarios && usuarios.length>0){
+				console.log("id usuario-----" + usuarios[0]._id);
+				fnIn(null, usuarios[0]._id);
+			}else{
+				fnIn("No es Administrador de la Aplicación", null);
+			}
+		}
+	});
+}
+
 module.exports = daUsuario;

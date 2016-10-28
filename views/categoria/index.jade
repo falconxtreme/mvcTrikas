@@ -1,14 +1,38 @@
 extends ../layout
 
 block content
-	h1.
-		#{title}
-	form#formAddCategory(name="addcategory",method="post",action="/categoria")
-		p Id Categoria: 
-			input#txtIdCategoria(type="text", placeholder="ex. CAT0001", name="idCategoria")
-		p Descripción:
-			input#txtDesCategoria(type="text", placeholder="ex. Sopa", name="desCategoria")
-		p Activo?: 
-			input#chkActivo(type="checkbox", name="esActivo")
-		p
-			button#btnSubmit(type="submit") Guardar
+	div.container
+		h1.
+			#{title}
+		form#formAddCategory(name="addcategory",method="post",action="/categoria")
+			div.form-group.row
+				label(for="txtIdCategoria", class="col-sm-2 col-form-label") Id Categoria
+				div.col-sm-10
+					input#txtIdCategoria(type="text",class="form-control", placeholder="ex. CAT0001", name="idCategoria")
+			div.form-group.row
+				label(for="txtDesCategoria", class="col-sm-2 col-form-label") Descripción
+				div.col-sm-10
+					input#txtDesCategoria(type="text",class="form-control", placeholder="ex. Sopas", name="desCategoria")
+			div.form-group.row
+				label(for="chkActivo", class="col-sm-2 col-form-label") Activo?
+				div.col-sm-10
+					input#chkActivo(type="checkbox", name="esActivo", class="custom-control-input")
+			div.form-group.row
+				div.offset-sm-2.col-sm-10
+					button#btnSubmit(type="submit", class="btn btn-primary") Guardar
+
+	if categorias
+		div.container
+			- each cat, i in categorias
+				div.row
+					div.col-xs-12.col-md-3
+						#{cat.idCategoria}
+					div.col-xs-12.col-md-3
+						#{cat.desCategoria}
+					div.col-xs-12.col-md-3
+						input(type="checkbox", checked='#{cat.esActivo}')
+					div.col-xs-12.col-md-3
+						button.btn.btn-trikas
+							i.fa.fa-search
+						button.btn.btn-trikas
+							i.fa.fa-search
