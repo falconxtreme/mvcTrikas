@@ -94,6 +94,7 @@ daUsuario.getIdUsuario = function (correo, fnIn){
 			fnIn(err, null);
 		} else {
 			console.log("devuelve getIdUsuario-----");
+			console.log(usuarios);
 			if(usuarios && usuarios.length>0){
 				console.log("id usuario-----" + usuarios[0]._id);
 				fnIn(null, usuarios[0]._id);

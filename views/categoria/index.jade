@@ -4,7 +4,7 @@ block content
 	div.container
 		h1.
 			#{title}
-		form#formAddCategory(name="addcategory",method="post",action="/categoria")
+		form#frmAddCategory(name="addcategory",method="post",action="/categoria")
 			div.form-group.row
 				label(for="txtIdCategoria", class="col-sm-2 col-form-label") Id Categoria
 				div.col-sm-10
@@ -16,10 +16,10 @@ block content
 			div.form-group.row
 				label(for="chkActivo", class="col-sm-2 col-form-label") Activo?
 				div.col-sm-10
-					input#chkActivo(type="checkbox", name="esActivo", class="custom-control-input")
+					input#chkActivo(type="checkbox", name="esActivo")
 			div.form-group.row
 				div.offset-sm-2.col-sm-10
-					button#btnSubmit(type="submit", class="btn btn-primary") Guardar
+					button#btnGuardarCategoria(type="submit", class="btn btn-primary") Guardar
 
 	if categorias
 		div.container
