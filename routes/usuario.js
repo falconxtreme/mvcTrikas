@@ -62,7 +62,7 @@ router.post('/', function(req, res, next) {
 });
 
 //POST a validacion de cuenta
-router.get('/autenticacion', function(req, res, next) {
+router.post('/autenticacion', function(req, res, next) {
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
     var oUsuario = {};
         oUsuario.correo = req.body.correo;

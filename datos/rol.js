@@ -16,16 +16,19 @@ daRol.getRoles = function (){
 }
 
 daRol.getRolCliente = function (fnIn){
+	console.log("ingresa a getRolCliente-----");
 	var rolCliente = "Cliente";
 	rolModel.find({
 		desRol: rolCliente
 	}, function (err, roles) {
 		if (err) {
+			console.log("error getRolCliente-----");
 			console.error(err);
 			fnIn(err, null);
 		} else {
-			return roles;
-			if(roles){
+			console.log("devuelve rol cliente-----");
+			if(roles && roles.length>0){
+				console.log("id rol cliente-----" + roles[0]._id);
 				fnIn(null, roles[0]._id);
 			}
 		}

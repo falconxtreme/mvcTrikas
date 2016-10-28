@@ -140,6 +140,8 @@ $(document).ready(function(){
 	});
 
 	function autenticarUsuario(idInterval, progress, button, title){
+		console.log("ingresa a autenticarUsuario----");
+		var inputs = $('form input');
 		var correo = $("#uLogin").val();
 		var password = $("#uPassword").val();
 		var token = "";
@@ -149,9 +151,10 @@ $(document).ready(function(){
 			contrasenha: password,
 			token: token
 		};
-
+		console.log("autenti correo: " + correo);
+		console.log("autenti contras: " + password);
 		$.ajax({
-			type: 'GET',
+			type: 'POST',
 			url: 'http://localhost:3000/usuario/autenticacion',
 			data: dataIn,
 			async: false,
@@ -169,6 +172,7 @@ $(document).ready(function(){
 						title.text("Acceso denegado!");
 						localStorage.usuarioAutenticadoTrikas = false;
 						button.show();
+						inputs.removeAttr("disabled");
 					}else{
 						localStorage.usuarioTrikas = correo;
 						localStorage.usuarioAutenticadoTrikas = true;
@@ -184,6 +188,7 @@ $(document).ready(function(){
 				}else{
 					title.text("Acceso denegado");
 					button.show();
+					inputs.removeAttr("disabled");
 				}
 				console.log(data);				
 			}
@@ -217,6 +222,7 @@ $(document).ready(function(){
 
 	function registrarUsuario(idInterval, progress, button, title){
 		console.log("ingresa a registrarUsuario----");
+		var inputs = $('form input');
 		var correo = $("#uLoginReg").val().trim();
 		var password = $("#uPasswordReg").val().trim();
 		var token = "";
@@ -246,6 +252,7 @@ $(document).ready(function(){
 						title.text("Registro inválido! " + data);
 						localStorage.usuarioAutenticadoTrikas = false;
 						button.show();
+						inputs.removeAttr("disabled");
 					}else{
 						localStorage.usuarioTrikas = correo;
 						localStorage.usuarioAutenticadoTrikas = true;
@@ -261,6 +268,7 @@ $(document).ready(function(){
 				}else{
 					title.text("Registro inválido!");
 					button.show();
+					inputs.removeAttr("disabled");
 				}
 				console.log(data);				
 			}
