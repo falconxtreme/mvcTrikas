@@ -102,6 +102,9 @@ input.form-control:focus{
 	color: white;
 }
 
+.noDisplay{
+	display: none;
+}
 /*.nav.navbar-nav .nav-item a.nav-link{
 	color: rgba(0,0,0,.3);
 }
@@ -176,4 +179,18 @@ input.form-control:focus{
 
 .producto-carrito{
 	border-bottom: 1px solid #C9B79C;
+}
+
+/*---------Categoría Page---------------*/
+#divCategorias{
+	margin-bottom: 1em;
+}
+
+#divCategorias .list-group-item-action.active{
+	background-color: #C9B79C;
+	border-color: #C9B79C;
+}
+
+#msjValidacion{
+	margin-top: 1em;
 }

@@ -84,7 +84,7 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 }
 
 daUsuario.getIdUsuario = function (correo, fnIn){
-	console.log("ingresa a getIdUsuario-----");
+	console.log("ingresa a getIdUsuario-----: " + correo);
 	usuarioModel.find({
 		correo: correo
 	}, function (err, usuarios) {
