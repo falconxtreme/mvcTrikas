@@ -9,6 +9,7 @@ block content
 				label(for="txtIdCategoria", class="col-sm-2 col-form-label") Id Categoria
 				div.col-sm-10
 					input#txtIdCategoria(type="text",class="form-control", placeholder="ex. CAT0001", name="idCategoria")
+					input#txtId(type="hidden", name="id")
 			div.form-group.row
 				label(for="txtDesCategoria", class="col-sm-2 col-form-label") Descripción
 				div.col-sm-10
@@ -28,7 +29,7 @@ block content
 			div.list-group
 				div.list-group-item.list-group-item-action.active
 					h5.list-group-heading Categorías
-				div.list-group-item.list-group-item-action
+				div#detCategorias.list-group-item.list-group-item-action
 					div(id="msjValidacionGen")
 					- each cat, i in categorias
 						div.row

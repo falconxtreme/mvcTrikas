@@ -4,6 +4,11 @@ $(document).ready(function(){
 		guardarCategoria();
 	});
 
+	function agregarCategoria(oCat){
+		var $detCategorias = $("#detCategorias");
+		var html = '<div class="row">'
+	}
+
 	function guardarCategoria(){
 		var idCategoria = $("#txtIdCategoria").val().trim();
 		var desCategoria = $("#txtDesCategoria").val().trim();
@@ -46,14 +51,40 @@ $(document).ready(function(){
 });
 
 function editarCategoria(id, idCategoria, desCategoria, esActivo){
+	$("#txtId").val(id);
+	$("#txtIdCategoria").val(idCategoria);
+	$("#txtDesCategoria").val(desCategoria);
+	$("#chkActivo").attr(esActivo);
 
+	var $btnGuardarCategoria = $("#btnGuardarCategoria");
+	var $btnActualizarCategoria = $("#btnActualizarCategoria");
+	$btnGuardarCategoria.addClass("noDisplay");
+	$btnActualizarCategoria.removeClass("noDisplay");
+}
+
+function actualizarCategoria(){
+	var id = $("#txtId").val().trim();
+	var idCategoria = $("#txtIdCategoria").val().trim();
+	var desCategoria = $("#txtDesCategoria").val().trim();
+	var esActivo = $("#chkActivo").is(":checked");
+
+	console.log("id: " + id);
+	console.log("idCategoria: " + idCategoria);
+	console.log("desCategoria: " + desCategoria);
+	console.log("esActivo: " + esActivo);
+	console.log("correo: " + localStorage.usuarioTrikas);
+
+	var dataIn = {
+		id: id,
+		idCategoria: idCategoria,
+		desCategoria: desCategoria,
+		esActivo: esActivo,
+		correo: localStorage.usuarioTrikas
+	};
 }
 
 function eliminarCategoria(id, el){
-	console.log("ingersa a eliminarCategoria***************");
-	console.log(el);
 	var $btnEli = $(el);
-
 	var dataIn = {
 		id: id
 	};
