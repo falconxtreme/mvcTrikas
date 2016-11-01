@@ -17,13 +17,6 @@ daCategoria.getCategorias = function (fnIn){
 }
 
 daCategoria.addCategoria = function(categoriaIn, fnIn){
-	console.log("*******************categoria in ***************************");
-	console.log("categoriaIn.idCategoria: " + categoriaIn.idCategoria);
-	console.log("categoriaIn.desCategoria: " + categoriaIn.desCategoria);
-	console.log("categoriaIn.fecCreacion: " + categoriaIn.fecCreacion);
-	console.log("categoriaIn.fecModificacion: " + categoriaIn.fecModificacion);
-	console.log("categoriaIn.usuario: " + categoriaIn.usuario);
-	console.log("categoriaIn.esActivo: " + categoriaIn.esActivo);
 	categoriaModel.create({
 	    idCategoria : categoriaIn.idCategoria,
 	    desCategoria : categoriaIn.desCategoria,
