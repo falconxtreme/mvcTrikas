@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var daProducto = require('../datos/producto'), //mongo connection
+    daCategoria = require('../datos/categoria'), //mongo connection
+    daUsuario = require('../datos/usuario'),
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
@@ -66,24 +68,33 @@ router.get('/', function(req, res, next){
 
 //POST a new Categoria
 router.post('/', function(req, res) {
+    console.log('post  oProducto: ');
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
-    var oCategoria = {};
-        oCategoria.idCategoria = req.body.idCategoria;
-        oCategoria.desCategoria = req.body.desCategoria;
-        oCategoria.fecCreacion = Date.now();
-        oCategoria.fecModificacion = Date.now();
-        oCategoria.usuario = req.body.correo;
-        oCategoria.esActivo = (req.body.esActivo)? req.body.esActivo : false;
+    var oProducto = {};
+        oProducto.idProducto = req.body.idProducto;
+        oProducto.desProducto = req.body.desProducto;
+        oProducto.costoUnitario = req.body.costoUnitario;
+        oProducto.stock = req.body.stock;
+        oProducto.precioUnitario = req.body.precioUnitario;
+        oProducto.urlImagen = req.body.urlImagen;
+        oProducto.categoria = req.body.categoria;
+        oProducto.fecCreacion = Date.now();
+        oProducto.fecModificacion = Date.now();
+        oProducto.usuario = req.body.correo;
+        oProducto.esCarrusel = (req.body.esCarrusel)? req.body.esCarrusel : false;
+        oProducto.seSolicita = (req.body.seSolicita)? req.body.seSolicita : false;
+        oProducto.esActivo = (req.body.esActivo)? req.body.esActivo : false;
     
-    daUsuario.getIdUsuario(oCategoria.usuario, function(err, idUsuario){
+    daUsuario.getIdUsuario(oProducto.usuario, function(err, idUsuario){
         //call the create function for our database
         console.log("idUsuario: " + idUsuario);
         if(err){
             res.json(err);
         }else{
-            oCategoria.usuario= idUsuario;
-            console.log('POST creating new Categoria: ' + oCategoria);
-            daCategoria.addCategoria(oCategoria, function(rptaBD){
+            oProducto.usuario= idUsuario;
+            oProducto.usuarioMod= idUsuario;
+            console.log('POST creating new oProducto: ' + oProducto);
+            daProducto.addProducto(oProducto, function(rptaBD){
                 res.json(rptaBD);
             });    
         }
@@ -92,25 +103,32 @@ router.post('/', function(req, res) {
 
 //PUT a UPD Categoria
 router.put('/', function(req, res) {
-    console.log('put  Categoria: ');
+    console.log('put  oProducto: ');
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
-    var oCategoria = {};
-        oCategoria._id = req.body.id;
-        oCategoria.idCategoria = req.body.idCategoria;
-        oCategoria.desCategoria = req.body.desCategoria;
-        oCategoria.fecModificacion = Date.now();
-        oCategoria.usuario = req.body.correo;
-        oCategoria.esActivo = (req.body.esActivo)? req.body.esActivo : false;
+    var oProducto = {};
+        oProducto._id = req.body.id;
+        oProducto.idProducto = req.body.idProducto;
+        oProducto.desProducto = req.body.desProducto;
+        oProducto.costoUnitario = req.body.costoUnitario;
+        oProducto.stock = req.body.stock;
+        oProducto.precioUnitario = req.body.precioUnitario;
+        oProducto.urlImagen = req.body.urlImagen;
+        oProducto.categoria = req.body.categoria;
+        oProducto.fecModificacion = Date.now();
+        oProducto.usuarioMod = req.body.correo;
+        oProducto.esCarrusel = (req.body.esCarrusel)? req.body.esCarrusel : false;
+        oProducto.seSolicita = (req.body.seSolicita)? req.body.seSolicita : false;
+        oProducto.esActivo = (req.body.esActivo)? req.body.esActivo : false;
     
-    daUsuario.getIdUsuario(oCategoria.usuario, function(err, idUsuario){
+    daUsuario.getIdUsuario(oProducto.usuarioMod, function(err, idUsuario){
         //call the create function for our database
         console.log("idUsuario: " + idUsuario);
         if(err){
             res.json(err);
         }else{
-            oCategoria.usuario= idUsuario;
-            console.log('POST creating new Categoria: ' + oCategoria);
-            daCategoria.updCategoria(oCategoria, function(rptaBD){
+            oProducto.usuarioMod= idUsuario;
+            console.log('put creating new oProducto: ' + oProducto);
+            daProducto.updProducto(oProducto, function(rptaBD){
                 res.json(rptaBD);
             });    
         }
@@ -119,12 +137,12 @@ router.put('/', function(req, res) {
 
 //delete a Categoria
 router.delete('/', function(req, res) {
-    console.log('delete  Categoria: ' + req.id + "- "  + req.body.id);
+    console.log('delete  oProducto: ' + req.id + "- "  + req.body.id);
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
-    var oCategoria = {};
-        oCategoria._id = req.body.id;
-    console.log("id: " + oCategoria._id);
-    daCategoria.delCategoria(oCategoria._id, function(rptaBD){
+    var oProducto = {};
+        oProducto._id = req.body.id;
+    console.log("id: " + oProducto._id);
+    daProducto.delProducto(oProducto._id, function(rptaBD){
         res.json(rptaBD);
     }); 
 });

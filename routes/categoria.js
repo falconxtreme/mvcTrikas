@@ -91,7 +91,7 @@ router.put('/', function(req, res) {
             res.json(err);
         }else{
             oCategoria.usuario= idUsuario;
-            console.log('POST creating new Categoria: ' + oCategoria);
+            console.log('put creating new Categoria: ' + oCategoria);
             daCategoria.updCategoria(oCategoria, function(rptaBD){
                 res.json(rptaBD);
             });    

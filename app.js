@@ -12,6 +12,7 @@ var routes = require('./routes/index'),
     catalogo = require('./routes/catalogo'),
     rol = require('./routes/rol'),
     categoria = require('./routes/categoria'),
+    producto = require('./routes/producto'),
     carrito = require('./routes/carrito'),
     usuario = require('./routes/usuario');
 
@@ -35,6 +36,7 @@ app.use('/', routes);
 app.use('/catalogo', catalogo);
 app.use('/rol', rol);
 app.use('/categoria', categoria);
+app.use('/producto', producto);
 app.use('/carrito', carrito);
 app.use('/usuario', usuario);
 

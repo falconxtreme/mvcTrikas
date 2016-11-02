@@ -14,8 +14,9 @@ var productoSchema = new mongoose.Schema({
 	categoria: {type: mongoose.Schema.ObjectId, ref: "Categoria"},
 	usuario: {type: mongoose.Schema.ObjectId, ref: "Usuario"},
 	usuarioMod: {type: mongoose.Schema.ObjectId, ref: "Usuario"},
+	esCarrusel: Boolean,
+	seSolicita: Boolean,
 	esActivo: Boolean
 });
 
 module.exports = mongoose.model('Producto', productoSchema);
-

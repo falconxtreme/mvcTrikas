@@ -6,6 +6,9 @@ block content
 			#{title}
 		form#frmAddCategory(name="addcategory",method="post",action="/categoria")
 			div.form-group.row
+				div.offset-sm-2.col-sm-10
+					button#btnNuevaCategoria(type="button", class="btn btn-primary noDisplay") Nuevo
+			div.form-group.row
 				label(for="txtIdCategoria", class="col-sm-2 col-form-label") Id Categoria
 				div.col-sm-10
 					input#txtIdCategoria(type="text",class="form-control", placeholder="ex. CAT0001", name="idCategoria")
@@ -21,7 +24,7 @@ block content
 			div.form-group.row
 				div.offset-sm-2.col-sm-10
 					button#btnGuardarCategoria(type="submit", class="btn btn-primary") Agregar
-					button#btnActualizarCategoria(type="submit", class="btn btn-primary noDisplay") Actualizar
+					button#btnActualizarCategoria(type="button", class="btn btn-primary noDisplay") Actualizar
 					div(id="msjValidacion")
 
 	div#divCategorias.container
@@ -32,7 +35,7 @@ block content
 				div#detCategorias.list-group-item.list-group-item-action
 					div(id="msjValidacionGen")
 					- each cat, i in categorias
-						div.row
+						div.row.rowCategoria
 							div.col-xs-12.col-md-2
 								= cat.idCategoria
 							div.col-xs-12.col-md-5
@@ -42,6 +45,7 @@ block content
 							div.col-xs-12.col-md-3
 								button.btn.btn-trikas(onclick="editarCategoria('#{cat._id}', '#{cat.idCategoria}' , '#{cat.desCategoria}' , '#{cat.esActivo}')")
 									i.fa.fa-pencil
+								&nbsp;
 								button.btn.btn-trikas(onclick="eliminarCategoria('#{cat._id}', this)")
 									i.fa.fa-trash
 

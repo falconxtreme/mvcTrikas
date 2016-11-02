@@ -38,19 +38,31 @@ daProducto.addProducto = function(productoIn, fnIn){
 	    stock : productoIn.stock,
 	    precioUnitario : productoIn.precioUnitario,
 	    urlImagen : productoIn.urlImagen,
-	    desProducto : productoIn.desProducto,
 	    fecCreacion : productoIn.fecCreacion,
 	    fecModificacion : productoIn.fecModificacion,
 	    categoria: productoIn.categoria,
 	    usuario: productoIn.usuario,
 	    usuarioMod: productoIn.usuarioMod,
+	    esCarrusel: productoIn.esCarrusel,
+	    seSolicita: productoIn.seSolicita,
 	    esActivo: productoIn.esActivo
     }, function (err, producto) {
 		if (err) {
-		  fnIn("Hubo un problema agregando la información a la base de datos. " + err);
+		  	fnIn("Hubo un problema agregando la información a la base de datos. " + err);
 		} else {
-		  //Categoria has been created
-		  fnIn(producto);
+			//Producto has been created
+			if(producto){
+				categoriaModel.populate(producto,{path: "categoria"}, function (err, producto) {
+					if (err) {
+						console.error(err);
+						fnIn(err);
+					} else {
+						fnIn(producto);
+					}	
+				});
+			}else{
+				fnIn("No se pudo registrar el producto por un problema de datos en BD.");
+			}
 		}
     })
 }
@@ -65,10 +77,11 @@ daProducto.updProducto = function(productoIn, fnIn){
 		    stock : productoIn.stock,
 		    precioUnitario : productoIn.precioUnitario,
 		    urlImagen : productoIn.urlImagen,
-		    desProducto : productoIn.desProducto,
 		    fecModificacion : productoIn.fecModificacion,
 		    categoria: productoIn.categoria,
 		    usuarioMod: productoIn.usuarioMod,
+		    esCarrusel: productoIn.esCarrusel,
+	    	seSolicita: productoIn.seSolicita,
 		    esActivo: productoIn.esActivo
         }, function (err, producto) {
 			if (err) {
@@ -103,6 +116,29 @@ daProducto.delProducto = function(id, fnIn){
         	}
         }
     });
+}
+
+daProducto.getProductosCarrusel = function (fnIn){
+	productoModel.find({esCarrusel: true}, function (err, productos) {
+		if(err){
+			console.error(err);
+			fnIn(err, null);
+		}else{
+			if(productos){
+				categoriaModel.populate(productos,{path: "categoria"}, function (err, productos) {
+					if (err) {
+						console.error(err);
+						fnIn(err, null);
+					} else {
+						fnIn(null, productos);
+					}	
+				});
+			}else{
+				fnIn("No existen productos", null);
+			}
+		}
+		
+	});
 }
 
 module.exports = daProducto;

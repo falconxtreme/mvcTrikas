@@ -194,3 +194,21 @@ input.form-control:focus{
 #msjValidacion{
 	margin-top: 1em;
 }
+
+.rowCategoria{
+	border-bottom: 1px solid #C9B79C;
+}
+
+/*---------Producto Page---------------*/
+#divProductos{
+	margin-bottom: 1em;
+}
+
+#divProductos .list-group-item-action.active{
+	background-color: #C9B79C;
+	border-color: #C9B79C;
+}
+
+.rowProducto{
+	border-bottom: 1px solid #C9B79C;
+}
