@@ -130,6 +130,9 @@ daProducto.getProductosCarrusel = function (fnIn){
 						console.error(err);
 						fnIn(err, null);
 					} else {
+						console.log("************************inicio productos");
+						console.log(productos);
+						console.log("************************fin productos");
 						fnIn(null, productos);
 					}	
 				});

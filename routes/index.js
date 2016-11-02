@@ -40,8 +40,7 @@ router.get('/', function(req, res, next) {
 	  			"productos": productos
 	  		});
 		}
-	}
-  		
+	});	
 });
 
 module.exports = router;

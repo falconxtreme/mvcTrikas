@@ -1,32 +1,32 @@
 extends layout
 
 block content
-  div(id="carousel-container")
-    div(id="productosCarousel", class="carousel slide", data-ride="carousel")
-      ol.carousel-indicators
-        li(data-target="#productosCarousel", data-slide-to="0", class="active")
-        li(data-target="#productosCarousel", data-slide-to="1")
-        li(data-target="#productosCarousel", data-slide-to="2")
-      div(class="carousel-inner", role="listbox")
-        div.carousel-item.active
-          img(src="/images/productos.svg", alt="Primer producto")
-          div.carousel-caption
-            h3 Producto 1
-            p.hidden-sm-down Este es el primer producto
-        div.carousel-item
-          img(src="/images/productos.svg", alt="Segundo producto")
-          div.carousel-caption
-            h3 Producto 2
-            p.hidden-sm-down Este es el segundo producto
-        div.carousel-item
-          img(src="/images/productos.svg", alt="Tercer producto")
-          div.carousel-caption
-            h3 Producto 3
-            p.hidden-sm-down Este es el tercer producto
-      a(class="left carousel-control", href="#productosCarousel", role="button", data-slide="prev")
-        span(class="icon-prev", aria-hidden="true")
-        span.sr-only Producto anterior
-      a(class="right carousel-control", href="#productosCarousel", role="button", data-slide="next")
-        span(class="icon-next", aria-hidden="true")
-        span.sr-only Producto siguiente
+  if productos
+    div(id="carousel-container")
+      div(id="productosCarousel", class="carousel slide", data-ride="carousel")
+        ol.carousel-indicators
+          li(data-target="#productosCarousel", data-slide-to="0", class="active")
+          li(data-target="#productosCarousel", data-slide-to="1")
+          li(data-target="#productosCarousel", data-slide-to="2")
+        div(class="carousel-inner", role="listbox")
+          - each pro, index in productos
+            if index==0
+              div.carousel-item.active
+                img(src='#{pro.urlImagen}', alt='#{pro.idProducto}')
+                div.carousel-caption
+                  h3 #{pro.idProducto}
+                  p.hidden-sm-down #{pro.desProducto}
+            else
+              div.carousel-item
+                img(src='#{pro.urlImagen}', alt='#{pro.idProducto}')
+                div.carousel-caption
+                  h3 #{pro.idProducto}
+                  p.hidden-sm-down #{pro.desProducto}
+          
+        a(class="left carousel-control", href="#productosCarousel", role="button", data-slide="prev")
+          span(class="icon-prev", aria-hidden="true")
+          span.sr-only Producto anterior
+        a(class="right carousel-control", href="#productosCarousel", role="button", data-slide="next")
+          span(class="icon-next", aria-hidden="true")
+          span.sr-only Producto siguiente
 
