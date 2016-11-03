@@ -19,7 +19,7 @@ block content
                 div.carousel-caption
                   h3 #{pro.idProducto}
                   p.hidden-sm-down #{pro.desProducto}
-                  div.input-group
+                  div.input-group.input-carrusel
                     input(type="text", class="form-control", placeholder="1")
                     span.input-group-btn
                       button(class="btn btn-secondary", type="button", data-toggle="tooltip", data-placement="top", title="Agregar a Carrito", onclick="agregarACarrito(this, '#{pro._id}', '#{pro.idProducto}', '#{pro.desProducto}', '#{pro.precioUnitario}')") Agregar

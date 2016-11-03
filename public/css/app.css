@@ -212,3 +212,8 @@ input.form-control:focus{
 .rowProducto{
 	border-bottom: 1px solid #C9B79C;
 }
+
+/*---------- Home Page: Carrusel ------------*/
+.input-carrusel{
+	width: 150px;
+}
