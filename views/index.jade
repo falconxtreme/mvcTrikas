@@ -1,13 +1,16 @@
 extends layout
 
 block content
+  - var nProds = productos.length
   if productos
     div(id="carousel-container")
       div(id="productosCarousel", class="carousel slide", data-ride="carousel")
         ol.carousel-indicators
-          li(data-target="#productosCarousel", data-slide-to="0", class="active")
-          li(data-target="#productosCarousel", data-slide-to="1")
-          li(data-target="#productosCarousel", data-slide-to="2")
+          - for (var x=0; x<nProds; x++)
+            if x==0
+              li(data-target="#productosCarousel", data-slide-to="#{x}", class="active")
+            else
+              li(data-target="#productosCarousel", data-slide-to="#{x}")
         div(class="carousel-inner", role="listbox")
           - each pro, index in productos
             if index==0
