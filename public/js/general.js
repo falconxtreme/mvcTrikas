@@ -10,3 +10,7 @@ function agregarMsj(idMsjValidacion, msjValidacion, esExito){
 	}
 	$msjValidacion.html(html);
 }
+
+function agregarACarrito(el, id, idProducto, desProducto, costoUnitario){
+	alert("Se agregó correctamente!");
+}
