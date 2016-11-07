@@ -15,10 +15,13 @@ if (!global.hasOwnProperty('db')) {
     mongoose: mongoose,
 
     //models
-    Rol:           require('./rol')(mongoose),
-    Usuario:       require('./usuario')(mongoose),
-    Categoria:     require('./categoria')(mongoose),
-    Producto:      require('./producto')(mongoose)
+    Rol:              require('./rol')(mongoose),
+    Usuario:          require('./usuario')(mongoose),
+    Categoria:        require('./categoria')(mongoose),
+    Producto:         require('./producto')(mongoose),
+    Pedido:           require('./pedido')(mongoose),
+    DetPedido:        require('./detPedido')(mongoose),
+    DatosGenerales:   require('./datosGenerales.js')(mongoose)
     
   };
 

@@ -214,6 +214,9 @@ input.form-control:focus{
 }
 
 /*---------- Home Page: Carrusel ------------*/
-.input-carrusel{
-	width: 150px;
+.btn-carousel-trikas{
+	position: absolute;
+	top: .5rem;
+	right: .5rem;
+	z-index: 10;
 }
