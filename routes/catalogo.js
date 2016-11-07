@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var daProducto = require('../datos/producto'), //mongo connection
+	daCategoria = require('../datos/categoria'), //mongo connection
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
@@ -18,20 +19,49 @@ router.use(methodOverride(function(req, res){
 
 /* GET Catalogo Page */
 router.get('/', function(req, res, next){
-	res.render('catalogo/index', 
-		{ 
-			title: 'Catálogo Trikas' , 
-			"home": '', 
-			"catalogo": 'active', 
-			"carrito": '', 
-			"login": '',
-			"productos": daProducto.getProductos()
-		});
-});
+	daCategoria.getCategoriasCatalogo(function(err, categorias){
+        if(err){
+            res.render('producto/index', 
+            { 
+                title: 'Producto Trikas: Error al obtener las categorías.' , 
+                "home": '', 
+                "catalogo": '', 
+                "carrito": '', 
+                "login": '',
+                "categorias": null,
+                "productos": null
+            });
+        }else{
+        	daProducto.getProductosCatalogo(function(err, productos){
+        		if(err){
+        			res.render('producto/index', 
+		            { 
+		                title: 'Producto Trikas: Error al obtener los productos.' , 
+		                "home": '', 
+		                "catalogo": '', 
+		                "carrito": '', 
+		                "login": '',
+		                "categorias": null,
+		                "productos": null
+		            });
+        		}else{
+        			res.render('producto/index', 
+		            { 
+		                title: 'Producto Trikas' , 
+		                "home": '', 
+		                "catalogo": '', 
+		                "carrito": '', 
+		                "login": '',
+		                "categorias": categorias,
+		                "productos": productos
+		            });
+        		}
+        	})
 
-/* GET Nuevo Producto page. */
-router.get('/nuevo', function(req, res) {
-    res.render('producto/nuevo', { title: 'Nuevo Producto' });
+            
+        }
+        
+    })
 });
 
 module.exports = router;

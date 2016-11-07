@@ -22,27 +22,18 @@ block content
             div.list-group
               a(class="list-group-item list-group-item-action active", href="#")
                 h5.list-group-heading Comidas
-              a(class="list-group-item list-group-item-action", href="#") Comida Oriental
-                span.tag.tag-pill.tag-default.pull-xs-right 174
-              a(class="list-group-item list-group-item-action", href="#") Comida Criolla
-                span.tag.tag-pill.tag-default.pull-xs-right 132
-              a(class="list-group-item list-group-item-action", href="#") Comida Criolla
-                span.tag.tag-pill.tag-default.pull-xs-right 132
-            div.list-group
-              a(class="list-group-item list-group-item-action active", href="#")
-                h5.list-group-heading Bebidas
-              a(class="list-group-item list-group-item-action", href="#") Licores
-                span.tag.tag-pill.tag-default.pull-xs-right 12
-              a(class="list-group-item list-group-item-action", href="#") Refrescos
-                span.tag.tag-pill.tag-default.pull-xs-right 14
-              a(class="list-group-item list-group-item-action", href="#") Jugos
-                span.tag.tag-pill.tag-default.pull-xs-right 11
+              if categorias
+                - each cat, index in categorias
+                  a(class="list-group-item list-group-item-action", href="#", onclick="productosCategoria('#{cat._id}')") #{cat.desCategoria}
 
         div.col-xs-12.col-md-9.lista-productos
           div.row
             div.col-xs-12.col-md-6.col-lg-4
-              div.card
-                img(src="/images/producto.svg", alt="Producto 1", class="card-img-top img-fluid")
-                div.card-block
-                  h4.card-title Producto 1
-                  p.card-text Con este producto podras convertirte en pokemon
+              if productos
+                - each pro, index in productos
+                  div.card
+                    img(src='#{pro.urlImagen}', alt='#{pro.idProducto}', class="card-img-top img-fluid")
+                    div.card-block
+                      h4.card-title #{pro.idProducto}
+                      p.card-text #{pro.desProducto}
+              

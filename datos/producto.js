@@ -119,7 +119,33 @@ daProducto.delProducto = function(id, fnIn){
 }
 
 daProducto.getProductosCarrusel = function (fnIn){
-	productoModel.find({esCarrusel: true}, function (err, productos) {
+	productoModel.find({esCarrusel: true, esActivo: true}, function (err, productos) {
+		if(err){
+			console.error(err);
+			fnIn(err, null);
+		}else{
+			if(productos){
+				categoriaModel.populate(productos,{path: "categoria"}, function (err, productos) {
+					if (err) {
+						console.error(err);
+						fnIn(err, null);
+					} else {
+						console.log("************************inicio productos");
+						console.log(productos);
+						console.log("************************fin productos");
+						fnIn(null, productos);
+					}	
+				});
+			}else{
+				fnIn("No existen productos", null);
+			}
+		}
+		
+	});
+}
+
+daProducto.getProductosCatalogo = function (fnIn){
+	productoModel.find({seSolicita: true, esActivo: true}, function (err, productos) {
 		if(err){
 			console.error(err);
 			fnIn(err, null);

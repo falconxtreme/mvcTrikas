@@ -14,7 +14,7 @@ html
       div.container
         div.row.flex-items-xs-middle.flex-items-xs-between
           div.col-xs-3
-            h1 Trikas
+            img(src="/images/trikas_rest_ev.jpg", width="60", height="50", alt="TRIKAS")
           div.col-xs-3.flex-xs-right
             button(class='navbar-toggler pull-xs-right hidden-sm-up', data-toggle="collapse", data-target="#navMenu") &#9776;
             a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#", data-toggle="modal" data-target="#loginMod") Login
@@ -60,7 +60,7 @@ html
     div(id="footer-container")
       div.container
         div.row.text-xs-center.text-md-left
-          div.col-md-4
+          div.col-md-4.noDisplay
             form(id="suscribirForm", action="#", method="POST")
               h4.text-uppercase ¿Quieres recibir todas las novedades?
               div.form-group
@@ -78,9 +78,9 @@ html
                 a(class="nav-link", href="/car") Carrito
               li.nav-item
                 a(class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
-              li.nav-item
+              li.nav-item.noDisplay
                 a(class="nav-link", href="/faq") FAQ
-              li.nav-item
+              li.nav-item.noDisplay
                 a(class="nav-link", href="/contacto") Contacto
 
     div(class="modal fade", id="loginMod", tabindex="-1", role="dialog" aria-labelledby="Login", aria-hidden="true")

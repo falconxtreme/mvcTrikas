@@ -78,4 +78,15 @@ daCategoria.delCategoria = function(id, fnIn){
     });
 }
 
+daCategoria.getCategoriasCatalogo = function (fnIn){
+	categoriaModel.find({ esActivo: true }, function (err, categorias) {
+		if (err) {
+			console.error(err);
+			fnIn(err,null);
+		} else {
+			fnIn(null,categorias);
+		}
+	});
+}
+
 module.exports = daCategoria;

@@ -1,3 +1,59 @@
-function cargarProductos(){
-	
-}
+$(document).ready(function(){
+	function crearFilaNoProduct(){
+		var html=	'<div clas="row producto-carrito">' +
+						'<div class="alert alert-danger" role="alert">' +
+							'<strong>Lo sentimos!</strong> Debe agregar productos para realizar su compra' +
+						'</div>' +
+					'</div>';
+		return html;
+	}
+
+	function crearFilaProduct(oProd){
+		var html =	'<div class="row producto-carrito">' +
+						'<div class="col-xs-12 col-md-5">' +
+							'<label>' + oProd.idProducto + '</label>' +
+						'</div>' +
+						'<div class="col-xs-12 col-md-2">' +
+							'<label> S/. ' + oProd.costoUnitario + '</label>' +
+						'</div>' +
+						'<div class="col-xs-12 col-md-2">' +
+							'<label>' + oProd.cantidad + '</label>' +
+						'</div>' +
+						'<div class="col-xs-12 col-md-2">' +
+							'<label> S/. ' + oProd.precioSubtotal + '</label>' +
+						'</div>' +
+					'</div>';
+		return html;
+	}
+
+	function cargarProductos(){
+		var $carritoProds = $("#carritoProds");
+		$carritoProds.empty();
+		if(localStorage.carTrikas){
+			$("#divTotalAPagar").removeClass("noDisplay");
+			var carTrikas = JSON.parse(localStorage.carTrikas);
+			var $hTotalPagar = $("#hTotalPagar");
+			var totalAPagar = 0;
+			for(var i=0; i<carTrikas.length; i++){
+				totalAPagar+=carTrikas[i].precioSubtotal;
+				$carritoProds.append(crearFilaProduct(carTrikas[i]));
+			}
+			$hTotalPagar.empty();
+			$hTotalPagar.append("S/. " + totalAPagar);
+		}else{
+			var $divTotalAPagar = $("#divTotalAPagar");
+			if(!$divTotalAPagar.hasClass("noDisplay")){
+				$divTotalAPagar.addClass("noDisplay");	
+			}
+			$carritoProds.append(crearFilaNoProduct());		
+		}
+	}
+
+	cargarProductos();
+
+	$("#aPedir").click(function(ev){
+		alert("Se pidió correctamente!");
+	})
+})
+
+

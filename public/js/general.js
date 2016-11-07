@@ -16,23 +16,6 @@ function alertExito(msj, esExito){
 	if (!esExito){
 		htmlAlert = '<strong>Lo sentimos!</strong> ' + msj ;
 	}
-	 /*
-	htmlAlert=	'<div id="alertBody" class="modal fade">' +
-				  '<div class="modal-dialog" role="document">' +
-				    '<div class="modal-content">' +
-				      '<div class="modal-header mod-hd-trikas">' +
-				        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-				          '<span aria-hidden="true">&times;</span>' +
-				        '</button>' +
-				        '<div class="alert alert-success alert-trikas" role="alert">' +
-	  						'<strong>Bien hecho!</strong> ' + msj +
-						'</div>' +
-				      '</div>' +
-				    '</div>' +
-				  '</div>' +
-				'</div><';
-	*/
-	console.log($("body"));
 	$("#alertMsj").empty();
 	$("#alertMsj").append(htmlAlert);
 	$("#alertBody").modal();
@@ -74,5 +57,5 @@ function agregarACarrito(el, id, idProducto, desProducto, costoUnitario, urlImag
 }
 
 function limpiarCarrito(){
-
+	localStorage.removeItem("carTrikas");
 }
