@@ -21,7 +21,7 @@ router.use(methodOverride(function(req, res){
 router.get('/', function(req, res, next){
 	daCategoria.getCategoriasCatalogo(function(err, categorias){
         if(err){
-            res.render('producto/index', 
+            res.render('catalogo/index', 
             { 
                 title: 'Producto Trikas: Error al obtener las categorías.' , 
                 "home": '', 
@@ -34,7 +34,7 @@ router.get('/', function(req, res, next){
         }else{
         	daProducto.getProductosCatalogo(function(err, productos){
         		if(err){
-        			res.render('producto/index', 
+        			res.render('catalogo/index', 
 		            { 
 		                title: 'Producto Trikas: Error al obtener los productos.' , 
 		                "home": '', 
@@ -45,7 +45,7 @@ router.get('/', function(req, res, next){
 		                "productos": null
 		            });
         		}else{
-        			res.render('producto/index', 
+        			res.render('catalogo/index', 
 		            { 
 		                title: 'Producto Trikas' , 
 		                "home": '', 

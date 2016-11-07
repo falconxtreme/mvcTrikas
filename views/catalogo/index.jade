@@ -28,9 +28,9 @@ block content
 
         div.col-xs-12.col-md-9.lista-productos
           div.row
-            div.col-xs-12.col-md-6.col-lg-4
-              if productos
-                - each pro, index in productos
+            if productos
+              - each pro, index in productos
+                div.col-xs-12.col-md-6.col-lg-4
                   div.card
                     img(src='#{pro.urlImagen}', alt='#{pro.idProducto}', class="card-img-top img-fluid")
                     div.card-block
