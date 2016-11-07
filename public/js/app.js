@@ -183,6 +183,7 @@ $(document).ready(function(){
 								title.text("Acceso autorizado");
 								button.attr("data-dismiss", "modal");
 							});
+						cargarUsuarioAutenticado();
 					}
 				}else{
 					title.text("Acceso denegado");
@@ -263,6 +264,7 @@ $(document).ready(function(){
 								title.text("Registro válido");
 								button.attr("data-dismiss", "modal");
 							});
+						cargarUsuarioAutenticado();
 					}
 				}else{
 					title.text("Registro inválido!");
@@ -274,6 +276,65 @@ $(document).ready(function(){
 		});
 		console.log("termina a registrarUsuario----");
 	};
+
+	function cargarUsuarioAutenticado(){
+		if(JSON.parse(localStorage.usuarioAutenticadoTrikas)){
+			var $lblBienvenidoHd = $("#lblBienvenidoHd");
+			$lblBienvenidoHd.empty().append("Bienvenido, " + localStorage.usuarioTrikas);
+			$lblBienvenidoHd.removeClass("noDisplay");
+			$("#iCerrarSesHd").removeClass("noDisplay");
+			$("#aCerrarSesMe").removeClass("noDisplay");
+			var $aLoginHd = $("#aLoginHd");
+			if(!$aLoginHd.hasClass("noDisplay")){
+				$aLoginHd.addClass("noDisplay")
+			}
+			var $aLoginMe = $("#aLoginMe");
+			if(!$aLoginMe.hasClass("noDisplay")){
+				$aLoginMe.addClass("noDisplay")
+			}
+			var $liLoginFo = $("#liLoginFo");
+			if(!$liLoginFo.hasClass("noDisplay")){
+				$liLoginFo.addClass("noDisplay")
+			}
+		}else{
+
+		}
+	}
+
+	function cerrarSesion(){
+		localStorage.usuarioAutenticadoTrikas = false;
+		localStorage.usuarioTrikas = "";
+		var $lblBienvenidoHd = $("#lblBienvenidoHd");
+		if(!$lblBienvenidoHd.hasClass("noDisplay")){
+			$lblBienvenidoHd.addClass("noDisplay")
+		}
+		var $iCerrarSesHd = $("#iCerrarSesHd");
+		if(!$iCerrarSesHd.hasClass("noDisplay")){
+			$iCerrarSesHd.addClass("noDisplay")
+		}
+		var $aCerrarSesMe = $("#aCerrarSesMe");
+		if(!$aCerrarSesMe.hasClass("noDisplay")){
+			$aCerrarSesMe.addClass("noDisplay")
+		}
+
+		$("#aLoginHd").removeClass("noDisplay");
+		$("#aLoginMe").removeClass("noDisplay");
+		$("#liLoginFo").removeClass("noDisplay");
+	}
+
+	cargarUsuarioAutenticado();
+
+	$("#iCerrarSesHd").click(function(ev){
+		cerrarSesion();
+	});
+
+	$("#aCerrarSesMe").click(function(ev){
+		cerrarSesion();
+	})
+
+	$("#aLimpiarCarrito").click(function(ev){
+		limpiarCarrito();
+	})
 });
 
 /*button.text("Close")

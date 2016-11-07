@@ -26,6 +26,20 @@ $(document).ready(function(){
 		return html;
 	}
 
+	function vaciarCarrito(){
+		limpiarCarrito();
+		var $carritoProds = $("#carritoProds");
+		$carritoProds.empty();
+	}
+
+	function crearFilaLimpiar(){
+		var html = '<div class="row producto-carrito">' +
+						'<div class="col-xs-12">' +
+							'<button type="button" class="btn btn-danger" onclick="vaciarCarrito()">Limpiar Carrito</button>' +
+						'</div>' +
+					'</div>';
+	}
+
 	function cargarProductos(){
 		var $carritoProds = $("#carritoProds");
 		$carritoProds.empty();
@@ -40,6 +54,7 @@ $(document).ready(function(){
 			}
 			$hTotalPagar.empty();
 			$hTotalPagar.append("S/. " + totalAPagar);
+			$hTotalPagar.append(crearFilaLimpiar());
 		}else{
 			var $divTotalAPagar = $("#divTotalAPagar");
 			if(!$divTotalAPagar.hasClass("noDisplay")){

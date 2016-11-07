@@ -15,9 +15,13 @@ html
         div.row.flex-items-xs-middle.flex-items-xs-between
           div.col-xs-3
             img(src="/images/trikas_rest.jpg", width="150", height="50", alt="TRIKAS")
-          div.col-xs-3.flex-xs-right
+          div.col-xs-4.flex-xs-right
+            div.pull-xs-right
+              label#lblBienvenidoHd.noDisplay.hidden-xs-down Bienvenido, Trikas!
+              &nbsp;
+              i(id="iCerrarSesHd", class="fa fa-sign-out noDisplay hidden-xs-down", aria-hidden="true")
             button(class='navbar-toggler pull-xs-right hidden-sm-up', data-toggle="collapse", data-target="#navMenu") &#9776;
-            a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#", data-toggle="modal" data-target="#loginMod") Login
+            a(id="aLoginHd", class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#", data-toggle="modal" data-target="#loginMod") Login
 
     div(id='menu-container')
       nav(id="navMenu", class="navbar-toggleable-xs navbar navbar-light collapse")
@@ -31,8 +35,11 @@ html
                   a(class="nav-link", href="/catalogo") Catálogo
                 li(class='nav-item text-xs-center #{carrito}')
                   a(class="nav-link", href="/carrito") Carrito
+                li(class='nav-item text-xs-center #{carrito}')
+                  a(id="aLimpiarCarrito", class="nav-link", href="#") Limpiar Carrito
                 li(class='nav-item hidden-sm-up text-xs-center #{login}')
-                  a(class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
+                  a(id="aCerrarSesMe", class="nav-link", href="#") Cerrar Sesión
+                  a(id="aLoginMe", class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
             div.col-xs-12.col-md-6.offset-md-2.hidden-xs-down
               form
                 div.input-group
@@ -76,7 +83,7 @@ html
                 a(class="nav-link", href="/catalogo") Catálogo
               li.nav-item
                 a(class="nav-link", href="/carrito") Carrito
-              li.nav-item
+              li#liLoginFo.nav-item
                 a(class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
               li.nav-item.noDisplay
                 a(class="nav-link", href="/faq") FAQ
