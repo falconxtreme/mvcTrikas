@@ -29,7 +29,6 @@ $(document).ready(function(){
 		if(!(JSON.parse(localStorage.noMostrarModal))){
 			$("#modalOferta").modal();
 		}
-		
 
 		$("#btnNoRegistrar").click(function (ev){
 			localStorage.noMostrarModal = true;

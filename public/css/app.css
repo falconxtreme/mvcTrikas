@@ -220,3 +220,11 @@ input.form-control:focus{
 	right: .5rem;
 	z-index: 10;
 }
+
+.alert-trikas{
+	margin-bottom: 0px;
+}
+
+.mod-hd-trikas{
+	padding: 0px;
+}
