@@ -335,14 +335,9 @@ $(document).ready(function(){
 	$("#aLimpiarCarrito").click(function(ev){
 		limpiarCarrito();
 	})
-});
 
-/*button.text("Close")
-					.removeClass("btn-primary")
-					.addClass("btn-success")
-    				.blur()
-					.delay(1200)
-					.fadeIn(function(){
-						title.text("Acceso autorizado");
-						button.attr("data-dismiss", "modal");
-					});*/
+	if(!localStorage.carTrikas){
+		console.log("no hay productos");
+		$("#aLimpiarCarrito").hide();
+	}
+});

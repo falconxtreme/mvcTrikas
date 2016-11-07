@@ -26,18 +26,13 @@ $(document).ready(function(){
 		return html;
 	}
 
-	function vaciarCarrito(){
-		limpiarCarrito();
-		var $carritoProds = $("#carritoProds");
-		$carritoProds.empty();
-	}
-
 	function crearFilaLimpiar(){
 		var html = '<div class="row producto-carrito">' +
 						'<div class="col-xs-12">' +
 							'<button type="button" class="btn btn-danger" onclick="vaciarCarrito()">Limpiar Carrito</button>' +
 						'</div>' +
 					'</div>';
+		return html;
 	}
 
 	function cargarProductos(){
@@ -54,13 +49,9 @@ $(document).ready(function(){
 			}
 			$hTotalPagar.empty();
 			$hTotalPagar.append("S/. " + totalAPagar);
-			$hTotalPagar.append(crearFilaLimpiar());
+			$carritoProds.append(crearFilaLimpiar());
 		}else{
-			var $divTotalAPagar = $("#divTotalAPagar");
-			if(!$divTotalAPagar.hasClass("noDisplay")){
-				$divTotalAPagar.addClass("noDisplay");	
-			}
-			$carritoProds.append(crearFilaNoProduct());		
+			mostrarNoProductos();
 		}
 	}
 
@@ -71,4 +62,17 @@ $(document).ready(function(){
 	})
 })
 
+function mostrarNoProductos(){
+	var $divTotalAPagar = $("#divTotalAPagar");
+	if(!$divTotalAPagar.hasClass("noDisplay")){
+		$divTotalAPagar.addClass("noDisplay");	
+	}
+	$carritoProds.append(crearFilaNoProduct());
+}
 
+function vaciarCarrito(){
+	limpiarCarrito();
+	$("#carritoProds").empty();
+	$("#hTotalPagar").empty();
+	mostrarNoProductos();
+}
