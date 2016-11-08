@@ -49,7 +49,7 @@ router.get('/', function(req, res, next){
 		            { 
 		                title: 'Producto Trikas' , 
 		                "home": '', 
-		                "catalogo": '', 
+		                "catalogo": 'active', 
 		                "carrito": '', 
 		                "login": '',
 		                "categorias": categorias,

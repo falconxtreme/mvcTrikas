@@ -40,5 +40,5 @@ block content
                         span.input-group-addon S/. #{pro.precioUnitario}
                         input(type="text", class="form-control", aria-label="Cantidad", value="1")
                         span.input-group-btn
-                          button(class="btn btn-secondary", type="button") Agregar
+                          button(class="btn btn-secondary", type="button", onclick="agregarACarrito(this, '#{pro._id}', '#{pro.idProducto}', '#{pro.desProducto}', '#{pro.precioUnitario}', '#{pro.urlImagen}')") Agregar
               

@@ -46,7 +46,7 @@ router.post('/', function(req, res) {
         oPedido.usuario = req.body.correo;
         oPedido.fecCreacion = Date.now();
         oPedido.fecModificacion = Date.now();
-    
+    console.log('post  oPedido: getIdUsuario');
     daUsuario.getIdUsuario(oProducto.usuario, function(err, idUsuario){
         //call the create function for our database
         console.log("idUsuario: " + idUsuario);

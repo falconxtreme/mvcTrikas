@@ -23,7 +23,7 @@ function alertExito(msj, esExito){
 }
 
 function agregarACarrito(el, id, idProducto, desProducto, precioUnitario, urlImagen){
-	console.log("id: " + id + "-idProducto: " + idProducto + "-des: " + desProducto + "-coun: " + costoUnitario);
+	console.log("id: " + id + "-idProducto: " + idProducto + "-des: " + desProducto + "-coun: " + precioUnitario);
 	var prodCar = {
 		id: id,
 		idProducto: idProducto,
