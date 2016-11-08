@@ -154,7 +154,7 @@ $(document).ready(function(){
 		console.log("autenti contras: " + password);
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:3000/usuario/autenticacion',
+			url: obtenerHostname() + '/usuario/autenticacion',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){
@@ -235,7 +235,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:3000/usuario',
+			url: obtenerHostname() + '/usuario',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){

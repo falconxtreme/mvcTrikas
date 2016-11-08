@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:3000/categoria',
+			url: obtenerHostname() + '/categoria',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){
@@ -101,7 +101,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'PUT',
-			url: 'http://localhost:3000/categoria',
+			url: obtenerHostname() + '/categoria',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){
@@ -159,7 +159,7 @@ function eliminarCategoria(id, el){
 
 	$.ajax({
 		type: 'DELETE',
-		url: 'http://localhost:3000/categoria',
+		url: obtenerHostname() + '/categoria',
 		data: dataIn,
 		async: false,
 		beforeSend: function(xhr){

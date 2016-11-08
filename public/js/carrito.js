@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:3000/carrito',
+			url: obtenerHostname() + '/carrito',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){

@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://localhost:3000/producto',
+			url: obtenerHostname() + '/producto',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){
@@ -155,7 +155,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'PUT',
-			url: 'http://localhost:3000/producto',
+			url: obtenerHostname() + '/producto',
 			data: dataIn,
 			async: false,
 			beforeSend: function(xhr){
@@ -219,7 +219,7 @@ function eliminarProducto(id, el){
 
 	$.ajax({
 		type: 'DELETE',
-		url: 'http://localhost:3000/producto',
+		url:  obtenerHostname() + '/producto',
 		data: dataIn,
 		async: false,
 		beforeSend: function(xhr){

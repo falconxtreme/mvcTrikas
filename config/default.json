@@ -1,0 +1,12 @@
+{
+  // Customer module configs 
+  "trikasapp": {
+    "dbConfig": {
+      "host": "localhost",
+      "port": 27017,
+      "dbName": "trikasbd",
+      "userdb": "",
+      "passdb": ""
+    }
+  }
+}

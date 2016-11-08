@@ -59,3 +59,13 @@ function agregarACarrito(el, id, idProducto, desProducto, precioUnitario, urlIma
 function limpiarCarrito(){
 	localStorage.removeItem("carTrikas");
 }
+
+function obtenerHostname(){
+	var port= window.location.port;
+	if(port!=""){
+		port=":" + port;
+	}
+	var sHostname = window.location.protocol + "//" + window.location.hostname + port;
+	console.log("sHostname: " + sHostname);
+	return sHostname;
+}
