@@ -5,11 +5,16 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser');
 
-var db = require('./model/db'),
-    blob = require('./model/blobs');
+//var db = require('./model/db');
+require('./model/db');
 
 var routes = require('./routes/index'),
-    blobs = require('./routes/blobs');
+    catalogo = require('./routes/catalogo'),
+    rol = require('./routes/rol'),
+    categoria = require('./routes/categoria'),
+    producto = require('./routes/producto'),
+    carrito = require('./routes/carrito'),
+    usuario = require('./routes/usuario');
 
 //var users = require('./routes/users');
 
@@ -28,8 +33,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/blobs', blobs);
-//app.use('/users', users);
+app.use('/catalogo', catalogo);
+app.use('/rol', rol);
+app.use('/categoria', categoria);
+app.use('/producto', producto);
+app.use('/carrito', carrito);
+app.use('/usuario', usuario);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

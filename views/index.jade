@@ -1,32 +1,38 @@
 extends layout
 
 block content
-  div(id="carousel-container")
-    div(id="productosCarousel", class="carousel slide", data-ride="carousel")
-      ol.carousel-indicators
-        li(data-target="#productosCarousel", data-slide-to="0", class="active")
-        li(data-target="#productosCarousel", data-slide-to="1")
-        li(data-target="#productosCarousel", data-slide-to="2")
-      div(class="carousel-inner", role="listbox")
-        div.carousel-item.active
-          img(src="/images/productos.svg", alt="Primer producto")
-          div.carousel-caption
-            h3 Producto 1
-            p.hidden-sm-down Este es el primer producto
-        div.carousel-item
-          img(src="/images/productos.svg", alt="Segundo producto")
-          div.carousel-caption
-            h3 Producto 2
-            p.hidden-sm-down Este es el segundo producto
-        div.carousel-item
-          img(src="/images/productos.svg", alt="Tercer producto")
-          div.carousel-caption
-            h3 Producto 3
-            p.hidden-sm-down Este es el tercer producto
-      a(class="left carousel-control", href="#productosCarousel", role="button", data-slide="prev")
-        span(class="icon-prev", aria-hidden="true")
-        span.sr-only Producto anterior
-      a(class="right carousel-control", href="#productosCarousel", role="button", data-slide="next")
-        span(class="icon-next", aria-hidden="true")
-        span.sr-only Producto siguiente
+  - var nProds = productos.length
+  if productos
+    div(id="carousel-container")
+      div(id="productosCarousel", class="carousel slide", data-ride="carousel")
+        ol.carousel-indicators
+          - for (var x=0; x<nProds; x++)
+            if x==0
+              li(data-target="#productosCarousel", data-slide-to="#{x}", class="active")
+            else
+              li(data-target="#productosCarousel", data-slide-to="#{x}")
+        div(class="carousel-inner", role="listbox")
+          - each pro, index in productos
+            if index==0
+              div.carousel-item.active
+                img(src='#{pro.urlImagen}', alt='#{pro.idProducto}')
+                div.carousel-caption
+                  h3 #{pro.idProducto}
+                  p.hidden-sm-down #{pro.desProducto}
+                  button(class="btn btn-primary btn-carousel-trikas", type="button", data-toggle="tooltip", data-placement="top", title="Agregar a Carrito", onclick="agregarACarrito(this, '#{pro._id}', '#{pro.idProducto}', '#{pro.desProducto}', '#{pro.precioUnitario}', '#{pro.urlImagen}')") Agregar
+                    
+            else
+              div.carousel-item
+                img(src='#{pro.urlImagen}', alt='#{pro.idProducto}')
+                div.carousel-caption
+                  h3 #{pro.idProducto}
+                  p.hidden-sm-down #{pro.desProducto}
+                  button(class="btn btn-primary btn-carousel-trikas", type="button", data-toggle="tooltip", data-placement="top", title="Agregar a Carrito", onclick="agregarACarrito(this, '#{pro._id}', '#{pro.idProducto}', '#{pro.desProducto}', '#{pro.precioUnitario}', '#{pro.urlImagen}')") Agregar
+          
+        a(class="left carousel-control", href="#productosCarousel", role="button", data-slide="prev")
+          span(class="icon-prev", aria-hidden="true")
+          span.sr-only Producto anterior
+        a(class="right carousel-control", href="#productosCarousel", role="button", data-slide="next")
+          span(class="icon-next", aria-hidden="true")
+          span.sr-only Producto siguiente
 

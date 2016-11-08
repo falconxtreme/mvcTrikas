@@ -14,10 +14,14 @@ html
       div.container
         div.row.flex-items-xs-middle.flex-items-xs-between
           div.col-xs-3
-            h1 Trikas
-          div.col-xs-3.flex-xs-right
+            img(src="/images/trikas_rest.jpg", width="150", height="50", alt="TRIKAS")
+          div.col-xs-4.flex-xs-right
+            div.pull-xs-right
+              label#lblBienvenidoHd.noDisplay.hidden-xs-down Bienvenido, Trikas!
+              &nbsp;
+              i(id="iCerrarSesHd", class="fa fa-sign-out noDisplay hidden-xs-down", aria-hidden="true")
             button(class='navbar-toggler pull-xs-right hidden-sm-up', data-toggle="collapse", data-target="#navMenu") &#9776;
-            a(class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#") Login
+            a(id="aLoginHd", class="login hidden-xs-down pull-xs-right text-uppercase font-weight-bold", href="#", data-toggle="modal" data-target="#loginMod") Login
 
     div(id='menu-container')
       nav(id="navMenu", class="navbar-toggleable-xs navbar navbar-light collapse")
@@ -25,14 +29,17 @@ html
           div.row
             div.col-xs-10.offset-xs-1.col-md-4.offset-md-0
               ul.nav.navbar-nav
-                li.nav-item.text-xs-center.active
-                  a(class="nav-link", href="index.html") Home
-                li.nav-item.text-xs-center
-                  a(class="nav-link", href="catalogo.html") Catálogo
-                li.nav-item.text-xs-center
-                  a(class="nav-link", href="carrito.html") Carrito
-                li.nav-item.hidden-sm-up.text-xs-center
-                  a(class="nav-link", href="#") Login
+                li(class='nav-item text-xs-center #{home}')
+                  a(class="nav-link", href="/") Home
+                li(class='nav-item text-xs-center #{catalogo}')
+                  a(class="nav-link", href="/catalogo") Catálogo
+                li(class='nav-item text-xs-center #{carrito}')
+                  a(class="nav-link", href="/carrito") Carrito
+                li(class='nav-item text-xs-center')
+                  a(id="aLimpiarCarrito", class="nav-link", href="#") Limpiar Carrito
+                li(class='nav-item hidden-sm-up text-xs-center #{login}')
+                  a(id="aCerrarSesMe", class="nav-link", href="#") Cerrar Sesión
+                  a(id="aLoginMe", class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
             div.col-xs-12.col-md-6.offset-md-2.hidden-xs-down
               form
                 div.input-group
@@ -52,12 +59,15 @@ html
                     span.hidden-sm-down Buscar
                     i.fa.fa-search.hidden-md-up
 
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js", integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY", crossorigin="anonymous")
+    script(type="text/javascript", src="/js/general.js")
+    
     block content
 
     div(id="footer-container")
       div.container
         div.row.text-xs-center.text-md-left
-          div.col-md-4
+          div.col-md-4.noDisplay
             form(id="suscribirForm", action="#", method="POST")
               h4.text-uppercase ¿Quieres recibir todas las novedades?
               div.form-group
@@ -72,16 +82,83 @@ html
               li.nav-item
                 a(class="nav-link", href="/catalogo") Catálogo
               li.nav-item
-                a(class="nav-link", href="/car") Carrito
-              li.nav-item
-                a(class="nav-link", href="/login") Login
-              li.nav-item
+                a(class="nav-link", href="/carrito") Carrito
+              li#liLoginFo.nav-item
+                a(class="nav-link", href="#", data-toggle="modal" data-target="#loginMod") Login
+              li.nav-item.noDisplay
                 a(class="nav-link", href="/faq") FAQ
-              li.nav-item
+              li.nav-item.noDisplay
                 a(class="nav-link", href="/contacto") Contacto
 
+    div(class="modal fade", id="loginMod", tabindex="-1", role="dialog" aria-labelledby="Login", aria-hidden="true")
+      div.modal-dialog
+        div.modal-content
+          ul(class="nav nav-tabs", role="tablist")
+            li.nav-item
+              a(class="nav-link active", data-toggle="tab", href="#tabAcceso", role="tab") Acceso
+            li.nav-item
+              a(class="nav-link", data-toggle="tab", href="#tabRegistro", role="tab") Registro
 
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js", integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY", crossorigin="anonymous")
+          div.tab-content
+            div(class="tab-pane active", id="tabAcceso", role="tabpanel")
+              div.modal-header
+                button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
+                h4(class="modal-title", id="lblTituloAcceso") Acceso
+              div.modal-body
+                form(role="form")
+                  div.form-group
+                    div.input-group
+                      input(type="text", class="form-control", id="uLogin", placeholder="correo")
+                      label(for="uLogin", class="input-group-addon")
+                        i(class="fa fa-user", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uPassword", placeholder="Password")
+                      label(for="uPassword", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+                  div.checkbox
+                    input(type="checkbox", id='chkRecordarme', onchange="recordarUsuario()")
+                    label &nbsp;Recordarme
+              div.modal-footer
+                button(class="form-control btn btn-primary", id="btnLoginOk") Acceder
+                div(id="progLogin")
+                  div(id="barLogin")
+            
+            div(class="tab-pane", id="tabRegistro", role="tabpanel")
+              div.modal-header
+                button(type="button", class="close", data-dismiss="modal", aria-hidden="true") x
+                h4(class="modal-title", id="lblTituloRegistro") Registro
+              div.modal-body
+                form(role="form")
+                  div.form-group
+                    div.input-group
+                      input(type="text", class="form-control", id="uLoginReg", placeholder="Correo", required)
+                      label(for="uLoginReg", class="input-group-addon")
+                        i(class="fa fa-user", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uPasswordReg", placeholder="Password", required)
+                      label(for="uPasswordReg", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+                  div.form-group
+                    div.input-group
+                      input(type="password", class="form-control", id="uRePasswordReg", placeholder="Confirmar Password", required)
+                      label(for="uRePasswordReg", class="input-group-addon")
+                        i(class="fa fa-lock", aria-hidden="true")
+              div.modal-footer
+                button(class="form-control btn btn-primary", id="btnLoginRegOk") Registrar
+                div(id="progLoginReg")
+                  div(id="barLoginReg")
+
+    div(id="alertBody", class="modal fade")
+      div(class="modal-dialog", role="document")
+        div.modal-content
+          div.modal-header.mod-hd-trikas
+            button(type="button", class="close",data-dismiss="modal", aria-label="Close")
+              span(aria-hidden="true") &times;
+            div(id="alertMsj", class="alert alert-success alert-trikas", role="alert")
+
+    
     script(src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js", integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB", crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js", integrity="VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU", crossorigin="anonymous")
     script(type="text/javascript", src="/js/app.js")
