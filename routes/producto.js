@@ -66,7 +66,7 @@ router.get('/', function(req, res, next){
 	
 });
 
-//POST a new Categoria
+//POST a new Producto
 router.post('/', function(req, res) {
     console.log('post  oProducto: ');
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms

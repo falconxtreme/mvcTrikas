@@ -14,7 +14,7 @@ $(document).ready(function(){
 							'<label>' + oProd.idProducto + '</label>' +
 						'</div>' +
 						'<div class="col-xs-12 col-md-2">' +
-							'<label> S/. ' + oProd.costoUnitario + '</label>' +
+							'<label> S/. ' + oProd.precioUnitario + '</label>' +
 						'</div>' +
 						'<div class="col-xs-12 col-md-2">' +
 							'<label>' + oProd.cantidad + '</label>' +
@@ -50,6 +50,7 @@ $(document).ready(function(){
 			$hTotalPagar.empty();
 			$hTotalPagar.append("S/. " + totalAPagar);
 			$carritoProds.append(crearFilaLimpiar());
+			localStorage.totalAPagarTrikas = totalAPagar;
 		}else{
 			mostrarNoProductos();
 		}
@@ -59,6 +60,43 @@ $(document).ready(function(){
 
 	$("#aPedir").click(function(ev){
 		alert("Se pidió correctamente!");
+		var productos = JSON.parse(localStorage.carTrikas);
+		var totalAPagar = JSON.parse(localStorage.totalAPagarTrikas);
+
+		var dataIn = {
+			productos: productos,
+			totalAPagar: totalAPagar,
+			cantProd: productos.length,
+			correo: localStorage.usuarioTrikas
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://localhost:3000/carrito',
+			data: dataIn,
+			async: false,
+			beforeSend: function(xhr){
+				if(xhr && xhr.overrideMimeType){
+					xhr.overrideMimeType('application/json;charset=utf-8');
+				}
+			},
+			dataType: 'json',
+			success: function(data){
+				if(data){
+					if(typeof (data) == 'string'){
+						//alert("Registro inválido! " + data);
+						agregarMsj("msjValidacion", data, false);
+					}else{
+						//alert("Registro válido!");
+						console.log("**objeto guardado******");
+						console.log(data);
+						alertExito("Se ha registrado correctamente el Pedido.", true);
+					}
+				}else{
+					alertExito("Ocurrió un error al momento de guardar el Pedido.", false);
+				}
+			}
+		});
 	})
 })
 

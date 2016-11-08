@@ -7,6 +7,7 @@ var pedidoSchema = new mongoose.Schema({
 	estado: String,
 	cantProd: Number,
 	precioTotalSIGV: Number,
+	IGV: Number,
 	precioTotalCIGV: Number,
 	fecCreacion: { type: Date, default: Date.now },
 	fecModificacion: { type: Date, default: Date.now },

@@ -22,16 +22,16 @@ function alertExito(msj, esExito){
 
 }
 
-function agregarACarrito(el, id, idProducto, desProducto, costoUnitario, urlImagen){
+function agregarACarrito(el, id, idProducto, desProducto, precioUnitario, urlImagen){
 	console.log("id: " + id + "-idProducto: " + idProducto + "-des: " + desProducto + "-coun: " + costoUnitario);
 	var prodCar = {
 		id: id,
 		idProducto: idProducto,
 		desProducto: desProducto,
-		costoUnitario: costoUnitario,
+		precioUnitario: precioUnitario,
 		cantidad: 1,
 		urlImagen: urlImagen,
-		precioSubtotal: (costoUnitario*1)
+		precioSubtotal: (precioUnitario*1)
 	}
 	if(localStorage.carTrikas){
 		console.log("existe car");
@@ -41,7 +41,7 @@ function agregarACarrito(el, id, idProducto, desProducto, costoUnitario, urlImag
 		});
 		if(indProdCar>=0){
 			carTrikas[indProdCar].cantidad = prodCar.cantidad;
-			carTrikas[indProdCar].precioSubtotal = carTrikas[indProdCar].cantidad * prodCar.costoUnitario;
+			carTrikas[indProdCar].precioSubtotal = carTrikas[indProdCar].cantidad * prodCar.precioUnitario;
 		}else{
 			carTrikas.push(prodCar);
 		}

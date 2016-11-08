@@ -1,5 +1,22 @@
 var express = require('express');
 var router = express.Router();
+var daPedido = require('../datos/pedido'), //mongo connection
+    daDetPedido = require('../datos/detPedido'), //mongo connection
+    daUsuario = require('../datos/usuario'),
+    bodyParser = require('body-parser'), //parses information from POST
+    methodOverride = require('method-override'); //used to manipulate POST
+
+//Any requests to this controller must pass through this 'use' function
+//Copy and pasted from method-override
+router.use(bodyParser.urlencoded({ extended: true }))
+router.use(methodOverride(function(req, res){
+      if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+      }
+}))
 
 /*Get Car Page*/
 router.get('/', function(req, res, next){
@@ -11,6 +28,81 @@ router.get('/', function(req, res, next){
 			"carrito": 'active', 
 			"login": ''
 		});
+});
+
+//POST a new Pedido
+router.post('/', function(req, res) {
+    console.log('post  oPedido: ');
+    // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
+    var oPedido = {};
+    	oPedido.numPedido = 0;
+    	oPedido.idPedido = "";
+        oPedido.productos = req.body.productos;
+        oPedido.estado = "PENDIENTE";
+        oPedido.cantProd = req.body.cantProd;
+        oPedido.precioTotalCIGV = req.body.totalAPagar;
+        oPedido.precioTotalSIGV = oPedido.precioTotalCIGV/1.18;
+        oPedido.IGV = oPedido.precioTotalCIGV - oPedido.precioTotalSIGV;
+        oPedido.usuario = req.body.correo;
+        oPedido.fecCreacion = Date.now();
+        oPedido.fecModificacion = Date.now();
+    
+    daUsuario.getIdUsuario(oProducto.usuario, function(err, idUsuario){
+        //call the create function for our database
+        console.log("idUsuario: " + idUsuario);
+        if(err){
+            res.json(err);
+        }else{
+            oPedido.usuario= idUsuario;
+            oPedido.usuarioMod= idUsuario;
+            console.log(oPedido);
+            daPedido.getNumPedidos(function(err, numPedidos){
+            	if(err){
+            		res.json(err);
+            	}else{
+            		oPedido.numPedido=numPedidos;
+            		oPedido.idPedido=numPedidos;
+            		daPedido.addPedido(oPedido, function(err, pedido){
+            			if(err){
+            				res.json(err);
+            			}else{
+            				oPedido.pedido = pedido;
+            				var oDetPedido={};
+            				var numPedidosProcesados=0;
+            				var errProcPedidos="";
+            				for(var i=0; i<oPedido.cantProd; i++){
+            					oDetPedido.pedido = oPedido.pedido._id;
+            					oDetPedido.idProducto = oPedido.productos[i].idProducto;
+            					oDetPedido.desProducto = oPedido.productos[i].desProducto;
+            					oDetPedido.precioUnitario = oPedido.productos[i].precioUnitario;
+            					oDetPedido.cantidad = oPedido.productos[i].cantidad;
+            					oDetPedido.precioSubtotal = oPedido.productos[i].precioSubtotal;
+            					oDetPedido.estado = "PENDIENTE";
+            					oDetPedido.fecCreacion = Date.now();
+        						oDetPedido.fecModificacion = Date.now();
+        						oDetPedido.usuario= oPedido.usuario;
+            					oDetPedido.usuarioMod= oPedido.usuario;
+            					oDetPedido.producto = oPedido.productos[i].id;
+
+            					daDetPedido.addDetPedido(oDetPedido, function(err, detPedido){
+            						if(err){
+            							res.json(err);
+            						}else{
+            							if(detPedido){
+            								numPedidosProcesados+=1;
+            								if(numPedidosProcesados==oPedido.cantProd){
+            									res.json(oPedido.pedido);
+            								}	
+            							}
+            						}
+            					})
+            				}
+            			}
+            		})
+            	}
+            })
+        }
+    });
 });
 
 module.exports = router;
