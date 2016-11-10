@@ -26,7 +26,7 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 				fnIn("Ya existe una cuenta creada con el mismo correo.")
 			} else{
 				usuarioModel.create({
-				    correo : usuarioIn.correo,
+				    correo : usuarioIn.correo.toUpperCase(),
 				    contrasenha : usuarioIn.contrasenha,
 				    nick : usuarioIn.nick,
 				    token : usuarioIn.token,
@@ -57,7 +57,7 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 
 daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 	usuarioModel.find({
-		correo: usuarioIn.correo,
+		correo: usuarioIn.correo.toUpperCase(),
 		contrasenha : usuarioIn.contrasenha
 	}, function (err, usuarios) {
 		if (err) {

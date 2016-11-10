@@ -64,4 +64,26 @@ router.get('/', function(req, res, next){
     })
 });
 
+/* GET Catalogo Page */
+router.get('/:idCat', function(req, res, next){
+    daProducto.getProductosCategoria(req.idCat, function(err, productos){
+        if(err){
+            res.json(err);
+        }else{
+            res.json(productos);
+        }
+    })
+});
+
+/* GET Catalogo Page */
+router.get('/:busqueda', function(req, res, next){
+    daProducto.getProductosCategoria(req.busqueda, function(err, productos){
+        if(err){
+            res.json(err);
+        }else{
+            res.json(productos);
+        }
+    })
+});
+
 module.exports = router;
