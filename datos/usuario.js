@@ -16,7 +16,7 @@ daUsuario.getUsuarios = function (){
 
 daUsuario.addUsuario = function(usuarioIn, fnIn){
 	usuarioModel.find({
-		correo: usuarioIn.correo
+		correo: usuarioIn.correo.toUpperCase()
 	}, function (err, usuarios) {
 		if (err) {
 			console.error(err);
@@ -86,7 +86,7 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 daUsuario.getIdUsuario = function (correo, fnIn){
 	console.log("ingresa a getIdUsuario-----: " + correo);
 	usuarioModel.find({
-		correo: correo
+		correo: correo.toUpperCase()
 	}, function (err, usuarios) {
 		if (err) {
 			console.log("error getIdUsuario-----");

@@ -53,9 +53,9 @@ html
           div.col-xs
             form
               div.input-group
-                input(class='form-control', type='text', placeholder='¿Encontró lo que buscaba?')
+                input#txtBusProducto(class='form-control', type='text', placeholder='¿Encontró lo que buscaba?')
                 span.input-group-btn
-                  button.btn.btn-trikas
+                  button.btn.btn-trikas(onclick="productosBusqueda()")
                     span.hidden-sm-down Buscar
                     i.fa.fa-search.hidden-md-up
 

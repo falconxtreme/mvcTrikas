@@ -172,6 +172,11 @@ input.form-control:focus{
 	margin-top: 1em;
 }
 
+#btnLimpiarCarrito{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 #carrito-container .list-group-item-action.active{
 	background-color: #C9B79C;
 	border-color: #C9B79C;

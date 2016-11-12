@@ -31,13 +31,16 @@ router.get('/', function(req, res, next){
 });
 
 //POST a new Pedido
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
     console.log('post  oPedido: ');
+    console.log("###############inicio  prods body##############");
+    console.log(req.body.productos);
+    console.log("###############fin   prods body##############");
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
     var oPedido = {};
     	oPedido.numPedido = 0;
     	oPedido.idPedido = "";
-        oPedido.productos = req.body.productos;
+        oPedido.productos = JSON.parse(req.body.productos);
         oPedido.estado = "PENDIENTE";
         oPedido.cantProd = req.body.cantProd;
         oPedido.precioTotalCIGV = req.body.totalAPagar;
@@ -47,7 +50,7 @@ router.post('/', function(req, res) {
         oPedido.fecCreacion = Date.now();
         oPedido.fecModificacion = Date.now();
     console.log('post  oPedido: getIdUsuario');
-    daUsuario.getIdUsuario(oProducto.usuario, function(err, idUsuario){
+    daUsuario.getIdUsuario(oPedido.usuario, function(err, idUsuario){
         //call the create function for our database
         console.log("idUsuario: " + idUsuario);
         if(err){
@@ -66,11 +69,16 @@ router.post('/', function(req, res) {
             			if(err){
             				res.json(err);
             			}else{
+                            console.log("-------------inicio pedido devuelto------------");
+                            console.log(pedido);
+                            console.log("-------------fin pedido devuelto------------");
             				oPedido.pedido = pedido;
             				var oDetPedido={};
             				var numPedidosProcesados=0;
             				var errProcPedidos="";
-            				for(var i=0; i<oPedido.cantProd; i++){
+                            var nProd = parseInt(oPedido.cantProd);
+                            console.log("nprod: " + nProd + "--PRODS: " + oPedido.productos.length);
+            				for(var i=0; i<nProd; i++){
             					oDetPedido.pedido = oPedido.pedido._id;
             					oDetPedido.idProducto = oPedido.productos[i].idProducto;
             					oDetPedido.desProducto = oPedido.productos[i].desProducto;
@@ -88,9 +96,13 @@ router.post('/', function(req, res) {
             						if(err){
             							res.json(err);
             						}else{
+                                        console.log("**************  inicio det pedido   **************")
+                                        console.log(detPedido);
+                                        console.log("**************  fin det pedido   **************")
             							if(detPedido){
             								numPedidosProcesados+=1;
-            								if(numPedidosProcesados==oPedido.cantProd){
+                                            console.log("======PEDIDO PROCESADO=====" + numPedidosProcesados);
+            								if(numPedidosProcesados==nProd){
             									res.json(oPedido.pedido);
             								}	
             							}

@@ -55,7 +55,6 @@ function agregarACarrito(el, id, idProducto, desProducto, precioUnitario, urlIma
 		localStorage.carTrikas = JSON.stringify(carTrikas);
 	}
 	alertExito("Se agregó correctamente el producto.", true);
-	//alert("Se agregó correctamente!");
 }
 
 function limpiarCarrito(){
@@ -68,6 +67,34 @@ function obtenerHostname(){
 		port=":" + port;
 	}
 	var sHostname = window.location.protocol + "//" + window.location.hostname + port;
-	console.log("sHostname: " + sHostname);
 	return sHostname;
+}
+
+function productosBusqueda(){
+	var prodsBus = [];
+	var sBusqueda = $("#txtBusProducto").val();
+	$.ajax({
+		type: 'GET',
+		url: obtenerHostname() + '/catalogo/bus?bus=' + sBusqueda ,
+		async: false,
+		beforeSend: function(xhr){
+			if(xhr && xhr.overrideMimeType){
+				xhr.overrideMimeType('application/json;charset=utf-8');
+			}
+		},
+		dataType: 'json',
+		success: function(data){
+			if(data){
+				if(typeof (data) == 'string'){
+					agregarMsj("msjValidacion", data, false);
+				}else{
+					console.log(data);
+					prodsBus=data;
+					crearCardsProductos(prodsBus);
+				}
+			}else{
+				agregarMsj("msjValidacion", "Ocurrió un error al momento de traer los productos de la búsqueda.", false);
+			}
+		}
+	});
 }

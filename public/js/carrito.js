@@ -22,7 +22,7 @@ $(document).ready(function(){
 	function crearFilaLimpiar(){
 		var html = '<div class="row producto-carrito">' +
 						'<div class="col-xs-12">' +
-							'<button type="button" class="btn btn-danger" onclick="vaciarCarrito()">Limpiar Carrito</button>' +
+							'<button id="btnLimpiarCarrito" type="button" class="btn btn-danger" onclick="vaciarCarrito()">Limpiar Carrito</button>' +
 						'</div>' +
 					'</div>';
 		return html;
@@ -52,12 +52,11 @@ $(document).ready(function(){
 	cargarProductos();
 
 	$("#aPedir").click(function(ev){
-		alert("Se pidió correctamente!");
 		var productos = JSON.parse(localStorage.carTrikas);
 		var totalAPagar = JSON.parse(localStorage.totalAPagarTrikas);
-
+		console.log(productos);
 		var dataIn = {
-			productos: productos,
+			productos: JSON.stringify(productos),
 			totalAPagar: totalAPagar,
 			cantProd: productos.length,
 			correo: localStorage.usuarioTrikas

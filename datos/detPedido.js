@@ -20,8 +20,10 @@ daDetPedido.getPedidos = function (idPedido, fnIn){
 }
 
 daDetPedido.addDetPedido = function(detPedidoIn, fnIn){
+	console.log("******** inicio add det pedido ***********");
+	console.log(detPedidoIn);
+	console.log("******** fin add det pedido ***********");
 	detPedidoModel.create({
-		pedido: detPedidoIn.pedido,
 	    idProducto : detPedidoIn.idProducto,
 	    desProducto : detPedidoIn.desProducto,
 	    precioUnitario : detPedidoIn.precioUnitario,
@@ -30,18 +32,19 @@ daDetPedido.addDetPedido = function(detPedidoIn, fnIn){
 	    estado : detPedidoIn.estado,
 	    fecCreacion : detPedidoIn.fecCreacion,
 	    fecModificacion : detPedidoIn.fecModificacion,
+	    pedido: detPedidoIn.pedido,
 	    usuario: detPedidoIn.usuario,
 	    usuarioMod: detPedidoIn.usuarioMod,
 	    producto: detPedidoIn.producto
     }, function (err, detPedido) {
 		if (err) {
-		  	fnIn("Hubo un problema agregando la información a la base de datos. " + err);
+		  	fnIn("Hubo un problema agregando la información a la base de datos. " + err,null);
 		} else {
 			//detPedido has been created
 			if(detPedido){
-				fnIn(detPedido);
+				fnIn(null, detPedido);
 			}else{
-				fnIn("No se pudo registrar el detalle de pedido por un problema de datos en BD.");
+				fnIn("No se pudo registrar el detalle de pedido por un problema de datos en BD.", null);
 			}
 		}
     })
