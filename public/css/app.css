@@ -219,6 +219,7 @@ input.form-control:focus{
 	top: .5rem;
 	right: .5rem;
 	z-index: 10;
+	width: auto;
 }
 
 .alert-trikas{

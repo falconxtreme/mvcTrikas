@@ -3,6 +3,7 @@ var categoriaModel = require('../model/categoria'); //modelo mongoose de categor
 //var usuarioModel = require('../model/usuario'); //modelo mongoose de usuario
 
 var mongoose = require('mongoose'); //mongo connection
+var ObjectId = require('mongoose').Types.ObjectId;
 
 //creamos el objeto daProducto que permitirá interactuar con la bd Mongoose
 var daProducto = {};
@@ -151,7 +152,7 @@ daProducto.getProductosCatalogo = function (fnIn){
 }
 
 daProducto.getProductosCategoria = function (idCat, fnIn){
-	productoModel.find({categoria: idCat}, function (err, productos) {
+	productoModel.find({categoria: new ObjectId(idCat)}, function (err, productos) {
 		if(err){
 			console.error(err);
 			fnIn(err, null);

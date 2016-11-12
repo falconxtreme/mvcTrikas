@@ -37,11 +37,13 @@ function agregarACarrito(el, id, idProducto, desProducto, precioUnitario, urlIma
 		console.log("existe car");
 		var carTrikas = JSON.parse(localStorage.carTrikas);
 		var indProdCar = carTrikas.findIndex(function(el){
+			console.log("--el.id: " + el.id + "--prodCar.id: " + prodCar.id);
 			return (el.id==prodCar.id);
 		});
+		console.log("indProdCar: " + indProdCar);
 		if(indProdCar>=0){
-			carTrikas[indProdCar].cantidad = prodCar.cantidad;
-			carTrikas[indProdCar].precioSubtotal = carTrikas[indProdCar].cantidad * prodCar.precioUnitario;
+			carTrikas[indProdCar].cantidad += prodCar.cantidad;
+			carTrikas[indProdCar].precioSubtotal = (carTrikas[indProdCar].cantidad * prodCar.precioUnitario);
 		}else{
 			carTrikas.push(prodCar);
 		}

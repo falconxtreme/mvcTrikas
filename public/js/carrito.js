@@ -1,12 +1,5 @@
 $(document).ready(function(){
-	function crearFilaNoProduct(){
-		var html=	'<div clas="row producto-carrito">' +
-						'<div class="alert alert-danger" role="alert">' +
-							'<strong>Lo sentimos!</strong> Debe agregar productos para realizar su compra' +
-						'</div>' +
-					'</div>';
-		return html;
-	}
+	
 
 	function crearFilaProduct(oProd){
 		var html =	'<div class="row producto-carrito">' +
@@ -52,7 +45,7 @@ $(document).ready(function(){
 			$carritoProds.append(crearFilaLimpiar());
 			localStorage.totalAPagarTrikas = totalAPagar;
 		}else{
-			mostrarNoProductos();
+			mostrarNoProductos($carritoProds);
 		}
 	}
 
@@ -100,7 +93,16 @@ $(document).ready(function(){
 	})
 })
 
-function mostrarNoProductos(){
+function crearFilaNoProduct(){
+	var html=	'<div clas="row producto-carrito">' +
+					'<div class="alert alert-danger" role="alert">' +
+						'<strong>Lo sentimos!</strong> Debe agregar productos para realizar su compra' +
+					'</div>' +
+				'</div>';
+	return html;
+}
+	
+function mostrarNoProductos($carritoProds){
 	var $divTotalAPagar = $("#divTotalAPagar");
 	if(!$divTotalAPagar.hasClass("noDisplay")){
 		$divTotalAPagar.addClass("noDisplay");	
@@ -112,5 +114,6 @@ function vaciarCarrito(){
 	limpiarCarrito();
 	$("#carritoProds").empty();
 	$("#hTotalPagar").empty();
-	mostrarNoProductos();
+	var $carritoProds = $("#carritoProds");
+	mostrarNoProductos($carritoProds);
 }
