@@ -54,7 +54,7 @@ function crearCardProducto(oProd){
 							'<h4 class="card-title">'+ oProd.idProducto +'</h4>'+
 							'<p class="card-text">'+ oProd.desProducto +'</p>'+
 							'<div class="input-group">'+
-								'<span class="input-group-addon">'+ oProd.precioUnitario +'</span>'+
+								'<span class="input-group-addon">S/. '+ oProd.precioUnitario +'</span>'+
 								'<input type="text" aria-label="Cantidad" value="1" class="form-control">'+
 								'<span class="input-group-btn">'+
 									'<button type="button" onclick="agregarACarrito(this,'+ String.fromCharCode(39) +
