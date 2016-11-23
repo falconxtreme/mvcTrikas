@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var daUsuario = require('../datos/usuario'), //mongo connection
     daRol = require('../datos/rol'),
+    daCorreo = require('../datos/correo'),
     bodyParser = require('body-parser'), //parses information from POST
     methodOverride = require('method-override'); //used to manipulate POST
 
@@ -54,9 +55,19 @@ router.post('/', function(req, res, next) {
         }else{
             oUsuario.rol= idRol;
             console.log('POST creating new USUARIO: ' + oUsuario);
-            daUsuario.addUsuario(oUsuario, function(rptaBD){
-                res.json(rptaBD);
-            });    
+            daUsuario.addUsuario(oUsuario, function(err,usuario){
+                if(err){
+                    res.json(err);
+                }else{
+                    daCorreo.enviarEmailActivacionCuenta(usuario.correo, usuario._id, function(err,info){
+                        if(err){
+                            res.json(err);
+                        }else{
+                            res.json(usuario);
+                        }
+                    });
+                }
+            });
         }
     });
 });

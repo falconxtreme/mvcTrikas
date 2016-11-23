@@ -1,18 +1,34 @@
 $(document).ready(function(){
-	
+	function crearFilaCabecera(){
+		var html= '<div class="row producto-carrito">' +
+						'<div class="col-xs-12 col-md-5 hidden-sm-down">' +
+							'<label>Producto</label>' +
+						'</div>' +
+						'<div class="col-xs-4 col-md-2">' +
+							'<label>Precio</label>' +
+						'</div>' +
+						'<div class="col-xs-4 col-md-2">' +
+							'<label>Cantidad</label>' +
+						'</div>' +
+						'<div class="col-xs-4 col-md-2">' +
+							'<label>Subtotal</label>' +
+						'</div>' +
+					'</div>';
+		return html;
+	}
 
 	function crearFilaProduct(oProd){
 		var html =	'<div class="row producto-carrito">' +
-						'<div class="col-xs-12 col-md-5">' +
+						'<div class="col-xs-12 col-md-5 hidden-xs-down">' +
 							'<label>' + oProd.idProducto + '</label>' +
 						'</div>' +
-						'<div class="col-xs-12 col-md-2">' +
+						'<div class="col-xs-4 col-md-2">' +
 							'<label> S/. ' + oProd.precioUnitario + '</label>' +
 						'</div>' +
-						'<div class="col-xs-12 col-md-2">' +
+						'<div class="col-xs-4 col-md-2">' +
 							'<label>' + oProd.cantidad + '</label>' +
 						'</div>' +
-						'<div class="col-xs-12 col-md-2">' +
+						'<div class="col-xs-4 col-md-2">' +
 							'<label> S/. ' + oProd.precioSubtotal + '</label>' +
 						'</div>' +
 					'</div>';
@@ -32,6 +48,7 @@ $(document).ready(function(){
 		var $carritoProds = $("#carritoProds");
 		$carritoProds.empty();
 		if(localStorage.carTrikas){
+			$carritoProds.append(crearFilaCabecera());
 			$("#divTotalAPagar").removeClass("noDisplay");
 			var carTrikas = JSON.parse(localStorage.carTrikas);
 			var $hTotalPagar = $("#hTotalPagar");

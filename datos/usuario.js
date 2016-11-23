@@ -38,16 +38,15 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 				    rol: usuarioIn.rol
 			    }, function (err, usuario) {
 					if (err) {
-					  fnIn("Hubo un problema agregando la información a la base de datos.");
+					  fnIn("Hubo un problema agregando la información a la base de datos.",null);
 					} else {
 					  //Categoria has been created
 					  if(usuario){
-					  	usuario._id="";
 					  	usuario.contrasenha="";
 					  	usuario.token="";
 					  	usuario.rol="";
 					  }
-					  fnIn(usuario);
+					  fnIn(null, usuario);
 					}
 			    });
 			}
