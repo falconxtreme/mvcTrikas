@@ -32,6 +32,7 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 				    token : usuarioIn.token,
 				    nombre : usuarioIn.nombre,
 				    dni: usuarioIn.dni,
+				    esActivo: usuarioIn.esActivo,
 				    fecNacimiento: usuarioIn.fecNacimiento,
 				    fecCreacion: usuarioIn.fecCreacion,
 				    fecModificacion: usuarioIn.fecModificacion,
@@ -54,6 +55,23 @@ daUsuario.addUsuario = function(usuarioIn, fnIn){
 	});
 }
 
+daUsuario.activarCuenta = function(usuarioId, fnIn){
+	usuarioModel.findById(usuarioId, function (err, usuario) {
+        //update it
+        usuario.update({
+            esActivo : true
+        }, function (err, usuario) {
+			if (err) {
+				console.log(err);
+		  		fnIn("Hubo un problema activando la cuenta. Comuníquese con nosotros para poder apoyarlo.",null);
+			} 
+			else {
+				fnIn(null, usuario);
+			}
+        })
+    });
+}
+
 daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 	usuarioModel.find({
 		correo: usuarioIn.correo.toUpperCase(),
@@ -69,7 +87,11 @@ daUsuario.autenticarCorreo = function(usuarioIn, fnIn){
 				  	usuarios[0].contrasenha="";
 				  	usuarios[0].token="";
 				  	usuarios[0].rol="";
-					fnIn(usuarios[0]);
+				  	if(!usuarios[0].activo){
+				  		fnIn("La cuenta ingresada aún no ha sido activada.")
+				  	}else{
+				  		fnIn(usuarios[0]);	
+				  	}
 				} else if(usuarios.length>0){
 					fnIn("Existe más de una coincidencia con la información ingresada.")
 				}else{

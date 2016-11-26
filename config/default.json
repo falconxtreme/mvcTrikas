@@ -7,6 +7,9 @@
       "dbName": "trikasbd",
       "userdb": "",
       "passdb": ""
+    },
+    "parameters": {
+      "appHost": "http://localhost:3000/"
     }
   }
 }

@@ -42,6 +42,7 @@ router.post('/', function(req, res, next) {
         oUsuario.token = "";
         oUsuario.nombre = "";
         oUsuario.dni = "";
+        oUsuario.esActivo = false;
         oUsuario.fecNacimiento = Date.now();
         oUsuario.fecCreacion = Date.now();
         oUsuario.fecModificacion = Date.now();
@@ -85,6 +86,23 @@ router.post('/autenticacion', function(req, res, next) {
     console.log("autenticacion contrasenha: " + oUsuario.contrasenha);
     daUsuario.autenticarCorreo(oUsuario, function(rptaBD){
     	res.json(rptaBD);
+    });
+});
+
+router.post('/activar', function(req, res, next) {
+    // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
+    var usuarioId = req.query.q;
+    
+    //call the create function for our database
+    console.log("activacion usuario: " + usuarioId);
+    console.log("autenticacion contrasenha: " + oUsuario.contrasenha);
+    daUsuario.activarCuenta(oUsuario, function(err, usuario){
+        if(err){
+            res.redirect("/");
+        }else{
+            res.redirect("/");
+        }
+        
     });
 });
 

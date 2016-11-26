@@ -39,6 +39,7 @@ app.use('/categoria', categoria);
 app.use('/producto', producto);
 app.use('/carrito', carrito);
 app.use('/usuario', usuario);
+app.use('/activar', usuario);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
