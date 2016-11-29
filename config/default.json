@@ -13,7 +13,7 @@
     },
     "correo":{
       "empresa": "Trikas Restaurante Bar",
-      "imgEmpresa": "images/trikas_rest.jpg"
+      "imgEmpresa": "https://radiant-earth-93894.herokuapp.com/images/trikas_rest.jpg"
     }
   }
 }

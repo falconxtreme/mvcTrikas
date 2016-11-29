@@ -12,10 +12,10 @@ var transporter = nodemailer.createTransport({
 var daCorreo = {};
 
 function crearMensajeDeActivacion(codCuenta, correoAActivar, pass){
-	var appHost = config.get('parameters.appHost');
-	var nomEmpresa = config.get('correo.empresa');
-	var imgEmpresa = config.get('correo.imgEmpresa');
-	var msj = '<img src="' + appHost + imgEmpresa + '" alt="' + nomEmpresa + '" width="42" height="42"> ' +
+	var appHost = config.get('trikasapp.parameters.appHost');
+	var nomEmpresa = config.get('trikasapp.correo.empresa');
+	var imgEmpresa = config.get('trikasapp.correo.imgEmpresa');
+	var msj = '<img src="' + imgEmpresa + '" alt="' + nomEmpresa + '" width="42" height="42"> ' +
 		'<b>✔ Estimado usuario(a)</b> para poder activar tu cuenta favor de copiar el siguiente link <b>' + 
 		appHost + 'activar/activar?q=' + codCuenta + '</b>' +
 		' y pegarlo en la barra de direcciones de tu navegador.<br /><br />' + 
