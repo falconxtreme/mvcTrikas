@@ -1,4 +1,5 @@
 var nodemailer = require('nodemailer');
+var config = require('config');
  
 var transporter = nodemailer.createTransport({
 	service: 'Gmail',
@@ -11,11 +12,15 @@ var transporter = nodemailer.createTransport({
 var daCorreo = {};
 
 function crearMensajeDeActivacion(codCuenta, correoAActivar, pass){
-	var msj = '<b>Hello world ✔</b>' + 'Para activar la cuenta ' + 
-		codCuenta + ' ingrese al siguiente link <b>Click aquí</b>';
-		'Estimado usuario(a) para poder activar tu cuenta favor de copiar el siguiente link ' + 
-		'.$url_activacion.?activar=true&id=' + 
-		' y pegarlo en la barra de direcciones de tu navegador.<br /><br />' ;
+	var appHost = config.get('parameters.appHost');
+	var nomEmpresa = config.get('correo.empresa');
+	var imgEmpresa = config.get('correo.imgEmpresa');
+	var msj = '<img src="' + appHost + imgEmpresa + '" alt="' + nomEmpresa + '" width="42" height="42"> ' +
+		'<b>✔ Estimado usuario(a)</b> para poder activar tu cuenta favor de copiar el siguiente link <b>' + 
+		appHost + 'activar/activar?q=' + codCuenta + '</b>' +
+		' y pegarlo en la barra de direcciones de tu navegador.<br /><br />' + 
+		'Saludos cordiales,<br/>' +
+		nomEmpresa;
 	return msj;
 }
 

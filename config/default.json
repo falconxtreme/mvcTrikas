@@ -10,6 +10,10 @@
     },
     "parameters": {
       "appHost": "http://localhost:3000/"
+    },
+    "correo":{
+      "empresa": "Trikas Restaurante Bar",
+      "imgEmpresa": "images/trikas_rest.jpg"
     }
   }
 }
