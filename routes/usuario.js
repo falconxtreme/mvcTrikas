@@ -89,18 +89,32 @@ router.post('/autenticacion', function(req, res, next) {
     });
 });
 
-router.post('/activar', function(req, res, next) {
+/* GET users listing. */
+router.get('/activado', function(req, res, next) {
+  res.render('usuario/activar', 
+        { 
+            title: 'Activación de Cuenta Trikas' , 
+            "home": '', 
+            "catalogo": '', 
+            "carrito": '', 
+            "login": ''
+        });
+});
+
+router.get('/activar', function(req, res, next) {
+    console.log("+++++++++++++ ingresa a activar cuenta ++++++++");
     // Get values from POST request. These can be done through forms or REST calls. These rely on the "name" attributes for forms
     var usuarioId = req.query.q;
     
     //call the create function for our database
     console.log("activacion usuario: " + usuarioId);
-    console.log("autenticacion contrasenha: " + oUsuario.contrasenha);
-    daUsuario.activarCuenta(oUsuario, function(err, usuario){
+    daUsuario.activarCuenta(usuarioId, function(err, usuario){
         if(err){
-            res.redirect("/");
+            //res.location("usuario");
+            res.redirect("/usuario/activado");
         }else{
-            res.redirect("/");
+            //res.location("usuario");
+            res.redirect("/usuario/activado");
         }
         
     });

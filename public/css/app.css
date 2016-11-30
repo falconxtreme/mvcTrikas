@@ -234,3 +234,8 @@ input.form-control:focus{
 .mod-hd-trikas{
 	padding: 0px;
 }
+
+/*--------- Cuenta Page: Activacion de cuenta--------*/
+#cuenta-container{
+	margin-bottom: 1em;
+}
